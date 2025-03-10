@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> M.P. Projects – Renovation at Its Best </title>
+
+    <script src="/SRC/index.js" defer></script>
+
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/CSS/Table.css">
+    <link rel="stylesheet" href="/CSS/Tofes.css">
+
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>G.R. Solutions – Excellence in Home Makeovers</h1>
+        <p>Looking for an expert to transform your space? G.R. Solutions is here to bring your ideas to life.</p>
+    
+        <div class="features">
+            <p> Specializing in all types of home improvements – Apartments, houses, offices, and custom jobs
+             - Premium materials – Because for us, quality is a must
+             - Timely project completion – We respect your schedule
+             - Superior craftsmanship – Dedicated, accurate, and flawless results</p>
+        </div>
+    
+        <p>We never settle for less – only outstanding outcomes!<br>
+           Ready to revamp your space? Get in touch now and let’s create your perfect home!</p>
+    
+           <a href="/Contact/index.html">
+            <button class="reach-out-btn">📞 Get in touch now!</button>
+            </a>
+    </div>
+    
+
+    <div class="container">
+        <table id="calculationTable">
+            <thead>
+                <button id="addRow">הוסף שורה</button>
+                <tr>
+                    <td data-label="מיקום"> מיקום </td>
+                    <td data-label="סוג עבודה"> סוג עבודה </td>
+                    <td data-label="כמות"> כמות </td>
+                    <td data-label="אחוז ביצוע"> אחוז ביצוע עבודה </td>
+                    <td data-label="מחיר ל..."> מחמיר ל.. </td>
+                    <td data-label="סה"כ ללא מע"מ"> מחיר ללא מע"מ </td>
+                    <td data-label="מע"מ (18%)"> מע"מ (18%) </td>
+                    <td data-label="סה"כ כולל מע"מ"> מחיר כולל מע"מ </td>
+                    <td data-label="חישוב"></td>
+                </tr>
+                
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="summary">
+            <p>סה"כ ללא מע"מ: <span id="totalWithoutVAT">0</span> ש"ח</p>
+            <p>מע"מ (18%): <span id="vat">0</span> ש"ח</p>
+            <p>סה"כ כולל מע"מ: <span id="totalWithVAT">0</span> ש"ח</p>
+        </div>
+        
+        <!-- שלושה כפתורים נוספים -->
+        <div class="buttons">
+            <button id="printButton">הדפסה</button>
+            <button id="homeButton">עמוד הבית</button>
+            <button id="resetButton">איפוס</button>
+        </div>
+        
+    </div>
+
+</body>
+</html>

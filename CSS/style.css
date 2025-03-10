@@ -1,0 +1,130 @@
+/* עיצוב כללי */
+body {
+    font-family: 'Arial', sans-serif;
+    direction: rtl; /* הכיוון יהיה מימין לשמאל */
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f1f1f1; /* רקע בהיר ורגוע */
+    color: #333; /* צבע טקסט כהה כדי להקל על קריאה */
+}
+
+/* עיצוב הקונטיינר */
+.container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* גלילה אופקית במקרים של טבלה רחבה */
+    padding: 20px;
+    margin: auto; /* ממרכז את הקונטיינר */
+}
+
+/* עיצוב כפתורים */
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 15px; /* הגדלת המרווח בין הכפתורים */
+}
+
+/* עיצוב כפתור כללי */
+.buttons button {
+    background-color: #4CAF50; /* צבע רקע ירוק כהה, צבע נעים לעין */
+    color: white; /* צבע טקסט לבן */
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px; /* פינות מעוגלות יותר */
+    text-transform: uppercase; /* אותיות גדולות */
+    letter-spacing: 1px; /* רווח בין האותיות */
+    transition: all 0.3s ease;
+    width: 180px; /* הגדלה קלה של רוחב הכפתור */
+}
+
+/* אפקט ריחוף על הכפתורים */
+.buttons button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* הצללה קלה */
+}
+
+.buttons button {
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.buttons {
+    flex-direction: column;
+    align-items: center;
+}
+.buttons button {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.container {
+    padding: 10px; /* ריווח מותאם בטאבלט */
+}
+
+/* עיצוב כפתור הדפסה */
+#printButton {
+    background-color: #007BFF; /* כחול בהיר */
+}
+
+/* עיצוב כפתור עמוד הבית */
+#homeButton {
+    background-color: #FF9800; /* כתום בהיר */
+}
+
+/* עיצוב כפתור איפוס */
+#resetButton {
+    background-color: #f44336; /* אדום כהה */
+}
+
+/* התאמה לטאבלט וטלפונים */
+@media (max-width: 768px) {
+    #calculationTable thead {
+        display: none;
+    }
+
+    #calculationTable tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #calculationTable td {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    #calculationTable td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+    }
+
+    /* אפשר להוסיף עיצוב מיוחד לכפתור הוספת שורה בטלפונים */
+    #addRow {
+        width: 100%;
+        margin-top: 15px;
+        padding: 12px 24px;
+        background-color: #3498db; /* צבע כחול טוב לעין */
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #addRow:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+    }
+}
+
+
+
+

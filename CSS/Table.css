@@ -1,0 +1,222 @@
+/* עיצוב כפתור הוספת שורה */
+#addRow {
+    background-color: #4CAF50; /* צבע רקע ירוק */
+    color: white; /* צבע טקסט לבן */
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* מעבר חלק רק לאפקטים */
+}
+/* אפקט ריחוף על כפתור הוספת שורה */
+#addRow:hover {
+    background-color: #45a049; /* שינוי צבע רקע כשמעבירים מעל */
+    transform: scale(1.05); /* הגדלת הכפתור מעט */
+}
+
+/* עיצוב כותרות */
+thead th {
+    background-color: #4CAF50; /* צבע רקע ירוק */
+    color: white; /* צבע טקסט לבן */
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+/* עיצוב הטבלה */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* הצללה נעימה */
+}
+/* עיצוב תאים וערכים בטבלה */
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle; /* שיפור יישור התאים */
+}
+/* עיצוב כותרת בטבלה */
+th {
+    background: #007bff; /* צבע רקע כחול */
+    color: white;
+}
+
+/* עיצוב כרטיס סיכום */
+.summary {
+    margin-top: 20px;
+    font-size: 18px;
+    background: #f9f9f9; /* רקע בהיר */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    margin: 20px 0;
+}
+
+/* עיצוב טקסט בתוך כרטיס הסיכום */
+.summary p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* עיצוב עבור טקסט מודגש */
+.summary span {
+    font-weight: bold;
+    color: #27ae60; /* צבע ירוק חזק */
+}
+
+/* התאמות רספונסיביות לטאבלט וטלפונים */
+@media (max-width: 768px) {
+    /* התאמות כללים לטבלה */
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .summary {
+        padding: 15px;
+    }
+
+    .summary p {
+        font-size: 16px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .buttons button {
+        width: 80%;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+
+    .summary {
+        padding: 15px;
+    }
+
+    .summary p {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px; /* הקטנת ריווח בטבלה */
+        font-size: 14px; /* הקטנת גודל טקסט */
+    }
+
+    th, td {
+        padding: 5px; /* הקטנת ריווח במובייל */
+        font-size: 12px; /* הקטנת גודל טקסט במובייל */
+    }
+
+    .summary {
+        font-size: 16px; /* גודל קטן יותר בכרטיס הסיכום */
+        padding: 8px; /* הקטנת ריווח בכרטיס */
+    }
+
+    .summary p {
+        font-size: 16px;
+    }
+
+    #calculationTable thead {
+        display: none;
+    }
+
+    #calculationTable tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #calculationTable td {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    #calculationTable td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+    }
+
+    /* אפשר להוסיף עיצוב מיוחד לכפתור הוספת שורה בטלפונים */
+    #addRow {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    /* התאמה לטבלת חישוב */
+    #calculationTable thead {
+        display: none;
+    }
+
+    #calculationTable tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #calculationTable td {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    #calculationTable td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+    }
+
+    /* עיצוב כפתור הוספת שורה בטאבלט */
+    #addRow {
+        width: 100%;
+        margin-top: 15px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+}
+
+/* התאמות רספונסיביות לנייד */
+@media (max-width: 480px) {
+    /* התאמות כלליות לכל הטבלה */
+    th, td {
+        padding: 5px;
+        font-size: 12px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+
+    .summary {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .summary p {
+        font-size: 14px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+
+    .buttons button {
+        font-size: 14px;
+        padding: 8px 16px;
+        transition: all 0.3s ease; /* מעבר חלק */
+    }
+}
