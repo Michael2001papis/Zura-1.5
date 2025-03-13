@@ -116,8 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // הוספת שורה ראשונית
     createRow();
 });
-
-
 document.getElementById("printButton").addEventListener("click", function () {
     window.print();
 });
