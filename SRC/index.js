@@ -123,7 +123,7 @@ document.getElementById("printButton").addEventListener("click", function () {
 });
 
 document.getElementById("homeButton").addEventListener("click", function () {
-    window.location.href = "../Interstitial/index.html"; // הפניה לעמוד הבית (ניתן לשנות את ה-URL בהתאם)
+    window.location.href = "Interstitial/index.html"; // הפניה לעמוד הבית (ניתן לשנות את ה-URL בהתאם)
 });
 document.getElementById("resetButton").addEventListener("click", function () {
     if (confirm("האם אתה בטוח שברצונך לאפס את הדף? כל הנתונים יאבדו.")) {
