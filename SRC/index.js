@@ -116,16 +116,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // הוספת שורה ראשונית
     createRow();
 });
-document.getElementById("printButton").addEventListener("click", function () {
-    window.print();
-});
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("printButton").addEventListener("click", () => window.print());
 
-document.getElementById("homeButton").addEventListener("click", function () {
-    window.location.href = "Interstitial/index.html"; // הפניה לעמוד הבית (ניתן לשנות את ה-URL בהתאם)
-});
-document.getElementById("resetButton").addEventListener("click", function () {
-    if (confirm("האם אתה בטוח שברצונך לאפס את הדף? כל הנתונים יאבדו.")) {
-        location.reload(); // איפוס הדף אם המשתמש מאשר
-    }
-});
+    document.getElementById("homeButton").addEventListener("click", () => {
+        window.location.href = "jobOffer/index.html";
+    });
 
+    document.getElementById("XXXButton").addEventListener("click", () => {
+        window.location.href = "jobOffer/index.html";
+    });
+
+    document.getElementById("resetButton").addEventListener("click", () => {
+        const confirmation = confirm("האם אתה בטוח שברצונך לאפס את הדף? כל הנתונים יאבדו.");
+        if (confirmation) location.reload();
+    });
+});
