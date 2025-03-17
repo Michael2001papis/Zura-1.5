@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 20px;
     background-color: #f1f1f1; /* רקע בהיר ורגוע */
-    color: #333; /* צבע טקסט כהה כדי להקל על קריאה */
+    color: #333; /* צבע טקסט כהה */
 }
 
 /* עיצוב הקונטיינר */
@@ -24,21 +24,23 @@ body {
     display: flex;
     justify-content: space-around;
     gap: 15px; /* הגדלת המרווח בין הכפתורים */
+    flex-direction: column;
+    align-items: center;
 }
 
 /* עיצוב כפתור כללי */
 .buttons button {
-    background-color: #4CAF50; /* צבע רקע ירוק כהה, צבע נעים לעין */
+    background-color: #4CAF50; /* צבע רקע ירוק כהה */
     color: white; /* צבע טקסט לבן */
     border: none;
     padding: 12px 24px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 8px; /* פינות מעוגלות יותר */
+    border-radius: 8px; /* פינות מעוגלות */
     text-transform: uppercase; /* אותיות גדולות */
     letter-spacing: 1px; /* רווח בין האותיות */
     transition: all 0.3s ease;
-    width: 180px; /* הגדלה קלה של רוחב הכפתור */
+    width: 180px; /* רוחב הכפתור */
 }
 
 /* אפקט ריחוף על הכפתורים */
@@ -48,41 +50,17 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* הצללה קלה */
 }
 
+/* כפתורים במובייל */
 .buttons button {
     font-size: 14px;
     padding: 8px 16px;
-}
-
-.buttons {
-    flex-direction: column;
-    align-items: center;
-}
-.buttons button {
     width: 80%;
     margin-bottom: 10px;
 }
 
-.container {
-    padding: 10px; /* ריווח מותאם בטאבלט */
-}
-
-/* עיצוב כפתור הדפסה */
-#printButton {
-    background-color: #007BFF; /* כחול בהיר */
-}
-
-/* עיצוב כפתור עמוד הבית */
-#homeButton {
-    background-color: #FF9800; /* כתום בהיר */
-}
-
-/* עיצוב כפתור איפוס */
-#resetButton {
-    background-color: #f44336; /* אדום כהה */
-}
-
 /* התאמה לטאבלט וטלפונים */
 @media (max-width: 768px) {
+    /* עיצוב טבלה בטלפונים */
     #calculationTable thead {
         display: none;
     }
@@ -105,12 +83,12 @@ body {
         display: block;
     }
 
-    /* אפשר להוסיף עיצוב מיוחד לכפתור הוספת שורה בטלפונים */
+    /* כפתור הוספת שורה בטלפונים */
     #addRow {
         width: 100%;
         margin-top: 15px;
         padding: 12px 24px;
-        background-color: #3498db; /* צבע כחול טוב לעין */
+        background-color: #3498db; /* כחול */
         color: white;
         font-size: 16px;
         border: none;
@@ -125,6 +103,17 @@ body {
     }
 }
 
+/* עיצוב כפתור הדפסה */
+#printButton {
+    background-color: #007BFF; /* כחול בהיר */
+}
 
+/* עיצוב כפתור עמוד הבית */
+#homeButton {
+    background-color: #FF9800; /* כתום בהיר */
+}
 
-
+/* עיצוב כפתור איפוס */
+#resetButton {
+    background-color: #f44336; /* אדום כהה */
+}

@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("printButton").addEventListener("click", () => window.print());
 
     document.getElementById("homeButton").addEventListener("click", () => {
-        window.location.href = "Interstitial/index.html";
+        window.location.href = "jobOffer/index.html";
     });
 
     document.getElementById("XXXButton").addEventListener("click", () => {
