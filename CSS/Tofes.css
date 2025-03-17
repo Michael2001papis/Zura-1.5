@@ -1,4 +1,4 @@
-
+/*--*/
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -7,33 +7,39 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .main-container h1 {
     font-size: 2.5rem;
     color: #2d3748;
     margin-bottom: 20px;
     text-align: center;
+    font-weight: bold;
 }
-
 .main-container p {
     font-size: 1.1rem;
-    color: #555;
+    color: #444;
     margin-bottom: 20px;
     text-align: center;
+    line-height: 1.6;
 }
-
 .features {
     font-size: 1rem;
     line-height: 1.8;
     margin-bottom: 30px;
 }
-
 .features a {
     display: block;
     text-align: center;
     margin-top: 30px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
 }
+.features a:hover {
+    color: #0056b3;
+}
+/*--*/
 
+/*--*/
 /* Button styles */
 .reach-out-btn {
     font-size: 1.2rem;
@@ -45,11 +51,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .reach-out-btn:hover {
     background-color: #45a049;
 }
+/*--*/
 
+/*--*/
 /* Responsive Design */
 @media (max-width: 768px) {
     .main-container {
