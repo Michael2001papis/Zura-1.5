@@ -1,46 +1,58 @@
-/* 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    font-size: 3rem;
-    color: #ff0000;
-    text-align: center;
-    font-weight: bold;
-} */
-
-
+/* עיצוב הכללי */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
+/* עיצוב הכותרת */
 h1 {
-    font-size: 2rem;
-    margin-top: 20px;
+    font-size: 24px;
+    margin-top: 50px;
     color: #333;
 }
 
-/* עיצוב רספונסיבי */
-@media screen and (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-        margin-top: 15px;
-    }
+/* עיצוב הכפתור */
+.home-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 1.2rem;
-        margin-top: 10px;
-    }
+/* עיצוב הקישור של זכויות יוצרים */
+.footer-link {
+    font-size: larger;
+    color: black;
+    background-color: skyblue;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 20px; /* רווח בין הכפתור לבין הקישור */
+}
+
+/* עיצוב ה-container של הכפתורים */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+/* עיצוב לשורת הכפתורים */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* רווח בין הכפתור לקישור */
+    margin-top: 20px;
 }
