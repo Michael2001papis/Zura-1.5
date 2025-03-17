@@ -71,11 +71,3 @@ body {
     transform: scale(1.05); /* הגדלת הכפתור מעט */
 }
 
-
-.rights-btn {
-    font-size: larger;  
-    color: black; 
-    background-color: Skyblue; 
-    padding: 5px;
-}
-
