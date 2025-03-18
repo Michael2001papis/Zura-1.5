@@ -120,10 +120,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("printButton").addEventListener("click", () => window.print());
 
     document.getElementById("homeButton").addEventListener("click", () => {
-        window.location.href = "jobOffer/index.html";
+        window.location.href = "Interstitial/index.html";
     });
 
-    document.getElementById("XXXButton").addEventListener("click", () => {
+    document.getElementById("quotationButton").addEventListener("click", () => {
         window.location.href = "jobOffer/index.html";
     });
 
@@ -131,8 +131,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const confirmation = confirm("האם אתה בטוח שברצונך לאפס את הדף? כל הנתונים יאבדו.");
         if (confirmation) location.reload();
     });
+    
 });
-
 document.getElementById("rights").addEventListener("click", () => {
     window.location.href = "Developerrights/index.html";
 });
+
+

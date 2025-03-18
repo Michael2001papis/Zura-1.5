@@ -1,58 +1,66 @@
-/* עיצוב הכללי */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    text-align: center;
 }
 
-/* עיצוב הכותרת */
+.button-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 h1 {
-    font-size: 24px;
-    margin-top: 50px;
-    color: #333;
+    margin-bottom: 20px;
 }
 
-/* עיצוב הכפתור */
+.buttons {
+    margin-top: 10px;
+}
+
 .home-button {
-    background-color: #4CAF50;
+    background: #4CAF50;
     color: white;
     border: none;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
+    transition: 0.3s;
 }
 
-/* עיצוב הקישור של זכויות יוצרים */
-.footer-link {
-    font-size: larger;
-    color: black;
-    background-color: skyblue;
-    padding: 5px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-left: 20px; /* רווח בין הכפתור לבין הקישור */
+.home-button:hover {
+    background: #45a049;
 }
 
-/* עיצוב ה-container של הכפתורים */
-.button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 100px;
+#rights {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-/* עיצוב לשורת הכפתורים */
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* רווח בין הכפתור לקישור */
-    margin-top: 20px;
+@media (max-width: 600px) {
+    .button-container {
+        width: 90%;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 18px;
+    }
+    .home-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }
