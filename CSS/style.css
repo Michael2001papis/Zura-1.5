@@ -1,15 +1,12 @@
-/* עיצוב כללי */
 body {
     font-family: 'Arial', sans-serif;
-    direction: rtl; /* הכיוון יהיה מימין לשמאל */
+    direction: rtl;
     text-align: center;
     margin: 0;
     padding: 20px;
-    background-color: #f1f1f1; /* רקע בהיר ורגוע */
-    color: #333; /* צבע טקסט כהה */
+    background-color: #f1f1f1;
+    color: #333;
 }
-
-/* עיצוב הקונטיינר */
 .container {
     width: 100%;
     max-width: 100%;
@@ -17,8 +14,6 @@ body {
     padding: 20px;
     margin: auto; /* ממרכז את הקונטיינר */
 }
-
-/* עיצוב כפתורים */
 .buttons {
     margin-top: 20px;
     display: flex;
@@ -27,8 +22,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
-/* עיצוב כפתור כללי */
 .buttons button {
     background-color: #4CAF50; /* צבע רקע ירוק כהה */
     color: white; /* צבע טקסט לבן */
@@ -42,53 +35,41 @@ body {
     transition: all 0.3s ease;
     width: 180px; /* רוחב הכפתור */
 }
-
-/* אפקט ריחוף על הכפתורים */
 .buttons button:hover {
     background-color: #45a049;
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* הצללה קלה */
 }
-
-/* כפתורים במובייל */
 .buttons button {
     font-size: 14px;
     padding: 8px 16px;
     width: 80%;
     margin-bottom: 10px;
 }
-
-/* התאמה לטאבלט וטלפונים */
 @media (max-width: 768px) {
-    /* עיצוב טבלה בטלפונים */
     #calculationTable thead {
         display: none;
     }
-
     #calculationTable tr {
         display: block;
         margin-bottom: 10px;
     }
-
     #calculationTable td {
         display: block;
         text-align: right;
         padding: 8px;
         border: 1px solid #ccc;
     }
-
     #calculationTable td:before {
         content: attr(data-label);
         font-weight: bold;
         display: block;
     }
-
-    /* כפתור הוספת שורה בטלפונים */
     #addRow {
         width: 100%;
         margin-top: 15px;
         padding: 12px 24px;
-        background-color: #3498db; /* כחול */
+        background-color: #3498db; 
         color: white;
         font-size: 16px;
         border: none;
@@ -96,24 +77,17 @@ body {
         cursor: pointer;
         transition: all 0.3s ease;
     }
-
     #addRow:hover {
         background-color: #2980b9;
         transform: scale(1.05);
     }
 }
-
-/* עיצוב כפתור הדפסה */
 #printButton {
-    background-color: #007BFF; /* כחול בהיר */
+    background-color: #007BFF;
 }
-
-/* עיצוב כפתור עמוד הבית */
 #homeButton {
-    background-color: #FF9800; /* כתום בהיר */
+    background-color: #FF9800; 
 }
-
-/* עיצוב כפתור איפוס */
 #resetButton {
-    background-color: #f44336; /* אדום כהה */
+    background-color: #f44336;
 }
