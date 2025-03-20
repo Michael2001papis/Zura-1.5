@@ -1,73 +1,98 @@
-
-
-/* הגדרות בסיסיות */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-/* עיצוב הסקשן */
+/* עיצוב לקטע יצירת קשר */
 .contact-section {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
     text-align: center;
-    padding: 40px;
-    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-}
-
-.contact-section h1 {
-    font-size: 2.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .contact-section h1 {
+    font-size: 2.5rem;
     color: #333;
-}
-
-/* עיצוב פרטי יצירת קשר */
-.contact-info {
+    margin-bottom: 20px;
+  }
+  
+  .contact-info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.contact-item {
-    background-color: #e9f7ef;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 400px;
-    text-align: left;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.contact-item h2 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.contact-item p {
-    font-size: 1.2em;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .contact-item {
+    flex: 1 1 250px;
+    margin: 10px;
+  }
+  
+  .contact-item h2 {
+    font-size: 1.5rem;
     color: #555;
-}
-
-/* עיצוב כפתור "Contact us today!" */
-.contact-btn {
-    background-color: #4CAF50; /* צבע רקע ירוק */
-    color: white; /* צבע טקסט לבן */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-item p {
+    font-size: 1.2rem;
+    color: #777;
+    margin: 0;
+  }
+  
+  /* כפתור יצירת הקשר */
+  .contact-actions .contact-btn {
     display: inline-block;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-actions .contact-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* עיצוב לפוטר של זכויות יוצרים */
+  .developer-footer {
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* מעבר חלק רק לאפקטים */
-}
-
-.contact-btn:hover {
-    background-color: #45a049; /* שינוי צבע רקע כשמעבירים מעל */
-    transform: scale(1.05); /* הגדלת הכפתור מעט */
-}
-
+    margin-top: 30px;
+  }
+  
+  .developer-link {
+    font-size: 1.2rem;
+    color: #000;
+    background-color: skyblue;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .developer-link:hover {
+    background-color: deepskyblue;
+  }
+  
+  /* רספונסיביות: התאמה למכשירים קטנים */
+  @media (max-width: 600px) {
+    .contact-section h1 {
+      font-size: 2rem;
+    }
+    .contact-item h2 {
+      font-size: 1.3rem;
+    }
+    .contact-item p {
+      font-size: 1rem;
+    }
+    .contact-actions .contact-btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+    .developer-link {
+      font-size: 1rem;
+      padding: 6px 12px;
+    }
+  }
+  

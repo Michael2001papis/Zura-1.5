@@ -134,4 +134,15 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "Developerrights/index.html";
     });
   });
+
+  // דוגמה לעדכון האירוע בעת שינוי האפשרות
+row.querySelector(".location").addEventListener("change", function () {
+  const customLocation = row.querySelector(".custom-location");
+  if (this.value === "אחר") {
+      customLocation.classList.remove("hidden");
+  } else {
+      customLocation.classList.add("hidden");
+  }
+});
+
   
