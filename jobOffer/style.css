@@ -1,0 +1,76 @@
+/* רקע עם אנימציית גרדיאנט */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+  }
+  
+  /* אנימציית רקע */
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* מרכז את התוכן בעמוד */
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  /* כותרת עם אפקט fade in */
+  .fade-in {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease-out;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  /* אנימציית כניסה */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* עיצוב הכפתורים */
+  .buttons a {
+    margin: 10px;
+  }
+  
+  .home-button {
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+  }
+  
+  .home-button:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
+  }
+  
+  /* התאמה למסכים קטנים */
+  @media (max-width: 600px) {
+    .fade-in {
+      font-size: 1.6rem;
+    }
+    .home-button {
+      padding: 10px 25px;
+      font-size: 1em;
+    }
+  }
+  
