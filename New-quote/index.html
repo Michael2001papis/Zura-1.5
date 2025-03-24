@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>יצירת הצעת מחיר</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #f1f1f1;
+      color: #333;
+    }
+    .container {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      padding: 20px;
+      margin: auto;
+    }
+    input, textarea {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+    .buttons button, #addRow {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      min-width: 150px;
+      margin: 5px;
+    }
+    .buttons button:hover, #addRow:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .summary {
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .hidden {
+      display: none;
+    }
+    /* רספונסיביות לטבלאות */
+    @media (max-width: 768px) {
+      #calculationTable thead {
+        display: none;
+      }
+      #calculationTable tr {
+        display: block;
+        margin-bottom: 10px;
+      }
+      #calculationTable td {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        border: 1px solid #ccc;
+      }
+      #calculationTable td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+      }
+    }
+    /* סגנון לאזור החתימה */
+    .signature-section {
+      margin-top: 30px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+    }
+    .signature-section canvas {
+      border: 1px solid #aaa;
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- שדות בסיסיים להצעת מחיר -->
+    <label for="quoteTitle">כותרת הצעת מחיר:</label>
+    <input type="text" id="quoteTitle" placeholder="הכנס כותרת">
+    
+    <label for="recipient">לכבוד:</label>
+    <input type="text" id="recipient" placeholder="שם מקבל ההצעה">
+
+    <label for="tableData">נתוני טבלה (דוגמה בפורמט JSON):</label>
+    <textarea id="tableData" rows="3" placeholder='לדוגמה: [{"מיקום": "דירה", "סוג עבודה": "הריסה", "כמות": 10}]'></textarea>
+    
+    <!-- טבלת חישוב ההצעה -->
+    <div>
+      <button id="addRow">הוסף שורה</button>
+      <table id="calculationTable">
+        <thead>
+          <tr>
+            <th data-label="מיקום">מיקום</th>
+            <th data-label="סוג עבודה">סוג עבודה</th>
+            <th data-label="כמות">כמות</th>
+            <th data-label="אחוז ביצוע">אחוז ביצוע עבודה</th>
+            <th data-label="מחיר ל...">מחיר ל...</th>
+            <th data-label="סה"כ ללא מע"מ">סה"כ ללא מע"מ</th>
+            <th data-label="מע"מ (18%)">מע"מ (18%)</th>
+            <th data-label="סה"כ כולל מע"מ">סה"כ כולל מע"מ</th>
+            <th data-label="חישוב"></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div class="summary">
+        <p>סה"כ ללא מע"מ: <span id="totalWithoutVAT">0</span> ש"ח</p>
+        <p>מע"מ (18%): <span id="vat">0</span> ש"ח</p>
+        <p>סה"כ כולל מע"מ: <span id="totalWithVAT">0</span> ש"ח</p>
+      </div>
+      <div class="buttons">
+        <button id="homeButton">עמוד הבית</button>
+        <button id="quotationButton">הצעת מחיר</button>
+        <button id="printButton">הדפסה</button>
+        <button id="resetButton">איפוס</button>
+      </div>
+      <button id="rights">מפתח האתר/זכויות יוצרים</button>
+    </div>
+
+    <!-- אזור חתימה דיגיטלית -->
+    <div class="signature-section">
+      <h3>חתימה דיגיטלית</h3>
+      <canvas id="signatureCanvas" width="400" height="200"></canvas>
+      <div>
+        <button id="clearSignature">נקה חתימה</button>
+      </div>
+    </div>
+
+    <!-- כפתור לשמירה והמשך לדף החשבונית -->
+    <button onclick="saveQuote()">שמור והמשך לחשבונית</button>
+  </div>
+
+  <script>
+    // ניהול טבלת החישוב
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableBody = document.querySelector("#calculationTable tbody");
+      const addRowButton = document.getElementById("addRow");
+      const totalWithoutVAT = document.getElementById("totalWithoutVAT");
+      const vat = document.getElementById("vat");
+      const totalWithVATEl = document.getElementById("totalWithVAT");
+
+      function calculateRow(row) {
+        const quantity = parseFloat(row.querySelector(".quantity").value) || 0;
+        const percent = parseFloat(row.querySelector(".completion-rate").value) || 100;
+        const price = parseFloat(row.querySelector(".price-per-unit").value) || 0;
+        const totalNoVAT = quantity * (percent / 100) * price;
+        const vatAmount = totalNoVAT * 0.18;
+        const totalWithVAT = totalNoVAT + vatAmount;
+
+        row.querySelector(".total-no-vat").textContent = totalNoVAT.toFixed(2);
+        row.querySelector(".vat-amount").textContent = vatAmount.toFixed(2);
+        row.querySelector(".total-with-vat").textContent = totalWithVAT.toFixed(2);
+        calculateOverallTotal();
+      }
+
+      function calculateOverallTotal() {
+        let sumNoVAT = 0, sumVAT = 0, sumTotal = 0;
+        document.querySelectorAll(".total-no-vat").forEach(td => {
+          sumNoVAT += parseFloat(td.textContent) || 0;
+        });
+        document.querySelectorAll(".vat-amount").forEach(td => {
+          sumVAT += parseFloat(td.textContent) || 0;
+        });
+        document.querySelectorAll(".total-with-vat").forEach(td => {
+          sumTotal += parseFloat(td.textContent) || 0;
+        });
+
+        totalWithoutVAT.textContent = sumNoVAT.toFixed(2);
+        vat.textContent = sumVAT.toFixed(2);
+        totalWithVATEl.textContent = sumTotal.toFixed(2);
+      }
+
+      function createRow() {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td data-label="מיקום">
+            <select class="location">
+              <option value="דירה">דירה</option>
+              <option value="קומה">קומה</option>
+              <option value="בית">בית</option>
+              <option value="וילה">וילה</option>
+              <option value="משרד">משרד</option>
+              <option value="אחר">אחר...</option>
+            </select>
+            <input type="text" class="custom-location hidden" placeholder="הכנס מיקום">
+          </td>
+          <td data-label="סוג עבודה">
+            <select class="work-type">
+              <option value="הריסה">הריסה</option>
+              <option value="בניה">בניה</option>
+              <option value="שפכטל">שפכטל</option>
+              <option value="צבע">צבע</option>
+              <option value="ריצוף">ריצוף</option>
+              <option value="טיח">טיח</option>
+              <option value="אינסטלציה">אינסטלציה</option>
+              <option value="חשמל">חשמל</option>
+              <option value="עבודות גבס">עבודות גבס</option>
+              <option value="אחר">אחר...</option>
+            </select>
+            <input type="text" class="custom-work hidden" placeholder="הכנס סוג עבודה">
+          </td>
+          <td data-label="כמות">
+            <select class="quantity-type">
+              <option value="מ"ר">מ"ר</option>
+              <option value="מ"א">מ"א</option>
+              <option value="י"ח">י"ח</option>
+              <option value="כמות כללית">כמות כללית</option>
+            </select>
+            <input type="number" class="quantity" min="0" placeholder="הכנס כמות">
+          </td>
+          <td data-label="אחוז ביצוע">
+            <select class="completion-rate">
+              <option value="100">100%</option>
+              <option value="90">90%</option>
+              <option value="80">80%</option>
+              <option value="70">70%</option>
+              <option value="60">60%</option>
+              <option value="50">50%</option>
+              <option value="40">40%</option>
+              <option value="30">30%</option>
+            </select>
+          </td>
+          <td data-label="מחיר ל...">
+            <input type="number" class="price-per-unit" min="0" placeholder="₪">
+          </td>
+          <td data-label="סה"כ ללא מע"מ" class="total-no-vat">0</td>
+          <td data-label="מע"מ (18%)" class="vat-amount">0</td>
+          <td data-label="סה"כ כולל מע"מ" class="total-with-vat">0</td>
+          <td data-label="חישוב"><button class="calculate">חשב</button></td>
+        `;
+        // ניהול שדות מותאמים לבחירה
+        row.querySelector(".location").addEventListener("change", function () {
+          const customLocation = row.querySelector(".custom-location");
+          customLocation.classList.toggle("hidden", this.value !== "אחר");
+        });
+        row.querySelector(".work-type").addEventListener("change", function () {
+          const customWork = row.querySelector(".custom-work");
+          customWork.classList.toggle("hidden", this.value !== "אחר");
+        });
+        // מאזין לחישוב שורה
+        row.querySelector(".calculate").addEventListener("click", function () {
+          calculateRow(row);
+        });
+        tableBody.appendChild(row);
+      }
+
+      // אתחול שורה ראשונה והוספת שורות נוספות בלחיצה
+      createRow();
+      addRowButton.addEventListener("click", createRow);
+
+      // ניהול כפתורי ניווט
+      document.getElementById("printButton").addEventListener("click", () => window.print());
+      document.getElementById("homeButton").addEventListener("click", () => {
+        window.location.href = "home.html";
+      });
+      document.getElementById("quotationButton").addEventListener("click", () => {
+        window.location.href = "quote-no-invoice.html";
+      });
+      document.getElementById("resetButton").addEventListener("click", () => {
+        if (confirm("האם אתה בטוח שברצונך לאפס את הדף? כל הנתונים יאבדו.")) {
+          location.reload();
+        }
+      });
+      document.getElementById("rights").addEventListener("click", () => {
+        window.location.href = "developerrights.html";
+      });
+    });
+
+    // ניהול אזור החתימה
+    const canvas = document.getElementById("signatureCanvas");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+
+    function startDrawing(e) {
+      drawing = true;
+      ctx.beginPath();
+      ctx.moveTo(getX(e), getY(e));
+    }
+    function stopDrawing() {
+      drawing = false;
+    }
+    function draw(e) {
+      if (!drawing) return;
+      ctx.lineTo(getX(e), getY(e));
+      ctx.stroke();
+    }
+    function getX(e) {
+      if (e.touches) {
+        return e.touches[0].clientX - canvas.getBoundingClientRect().left;
+      }
+      return e.clientX - canvas.getBoundingClientRect().left;
+    }
+    function getY(e) {
+      if (e.touches) {
+        return e.touches[0].clientY - canvas.getBoundingClientRect().top;
+      }
+      return e.clientY - canvas.getBoundingClientRect().top;
+    }
+
+    // אירועים לעכבר
+    canvas.addEventListener("mousedown", startDrawing);
+    canvas.addEventListener("mouseup", stopDrawing);
+    canvas.addEventListener("mousemove", draw);
+    // אירועים למגע
+    canvas.addEventListener("touchstart", (e) => { startDrawing(e); e.preventDefault(); });
+    canvas.addEventListener("touchmove", (e) => { draw(e); e.preventDefault(); });
+    canvas.addEventListener("touchend", (e) => { stopDrawing(e); e.preventDefault(); });
+
+    // כפתור ניקוי חתימה
+    document.getElementById("clearSignature").addEventListener("click", () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    // פונקציה לשמירה והעברת הנתונים
+    function saveQuote() {
+      const quoteData = {
+        title: document.getElementById("quoteTitle").value,
+        recipient: document.getElementById("recipient").value,
+        tableData: document.getElementById("tableData").value,
+        // המרת חתימה ל-Data URL
+        signature: canvas.toDataURL("image/png")
+      };
+      localStorage.setItem("quoteData", JSON.stringify(quoteData));
+      // מעבר לדף החשבונית
+      window.location.href = "/Quote-without-invoice/index.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>הצעת מחיר ללא חשבונית</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      text-align: center;
+      background-color: #f1f1f1;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    header .date {
+      font-weight: bold;
+    }
+    h1, h2 {
+      margin: 10px 0;
+    }
+    .business-info, .quote-info {
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .quote-info label {
+      display: block;
+      margin: 8px 0 4px;
+      font-weight: bold;
+    }
+    .quote-info input, .quote-info textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .buttons button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      min-width: 150px;
+    }
+    .buttons button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    /* רספונסיביות */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="date" id="currentDate"></div>
+      <div class="quote-number">
+        <strong>מספר הצעת מחיר:</strong> <span id="quoteNumber">12345</span>
+      </div>
+    </header>
+    <div class="business-info">
+      <p><strong>שם העסק:</strong> מ.פ. פרויקטים</p>
+      <p><strong>מספר עסק:</strong> [יש לעדכן]</p>
+      <p><strong>כתובת:</strong> גולדברג הנדבון 14, רשל"צ</p>
+      <p><strong>טלפון:</strong> 054-582-0008</p>
+      <p><strong>אימייל:</strong> Zurapapismedov@gmail.com</p>
+    </div>
+    
+    <hr>
+    
+    <div class="quote-info">
+      <label for="quoteTitle">כותרת ההצעה:</label>
+      <input type="text" id="quoteTitle" placeholder="הכנס כותרת">
+
+      <label for="quoteText">מלל נלווה להסבר:</label>
+      <textarea id="quoteText" rows="3" placeholder="הכנס מלל נלווה"></textarea>
+
+      <label for="recipient">לכבוד:</label>
+      <input type="text" id="recipient" placeholder="שם מקבל ההצעה">
+
+      <label for="recipientEmail">כתובת המייל:</label>
+      <input type="email" id="recipientEmail" placeholder="הכנס כתובת מייל">
+    </div>
+    
+    <!-- כאן ניתן לשלב את טבלת ההצעה (כפי שמופיע בדף יצירת הצעת מחיר)
+         לדוגמה – ניתן להציג את הנתונים שנבחרו בטבלה בצורה מסודרת -->
+    <div class="quote-table">
+      <h2>פרטי ההצעה</h2>
+      <!-- כאן תוכל להוסיף אלמנט (למשל <div> או <table>) שיציג את הנתונים מהטבלה -->
+      <p>[נתוני טבלה - מיקום, סוג עבודה, כמות, אחוז ביצוע, מחיר ל..., סה"כ ללא מע"מ, מע"מ, סה"כ כולל מע"מ]</p>
+    </div>
+    
+    <div class="additional-notes">
+      <label for="notes">הערות נוספות:</label>
+      <textarea id="notes" rows="3" placeholder="הכנס הערות במידת הצורך"></textarea>
+    </div>
+    
+    <div class="signature">
+      <label for="closing">בברכה,</label>
+      <input type="text" id="closing" placeholder="הכנס משפט סיום">
+      
+      <label for="clientPhone">טלפון:</label>
+      <input type="text" id="clientPhone" placeholder="הכנס טלפון">
+      
+      <label for="clientName">שם לקוח:</label>
+      <input type="text" id="clientName" placeholder="הכנס שם לקוח">
+      
+      <label for="clientSignature">חתימת הלקוח:</label>
+      <!-- כאן ניתן לשלב תיבת חתימה (למשל canvas או פתרון צד שלישי) -->
+      <div id="clientSignature" style="border:1px solid #ccc; padding:10px;">[תיבת חתימה]</div>
+    </div>
+    
+    <div class="payment-terms">
+      <h2>תנאי התשלום</h2>
+      <p>לפני תחילת העבודה: <input type="text" placeholder="20% או ערך אחר"></p>
+      <p>עם סיום העבודה: <input type="text" placeholder="80% או ערך אחר"></p>
+      <p>אופן התשלום: <input type="text" placeholder="מזומן, העברה בנקאית, צ'ק וכו'"></p>
+      <p>ביטול העבודה: <input type="text" placeholder="תנאים לביטול"></p>
+      <p>תוקף ההצעה עד: <input type="text" placeholder="תאריך"></p>
+      <p>חתימה: <input type="text" placeholder="חתימה"></p>
+    </div>
+    
+    <div class="buttons">
+      <button id="shareButton">שתף</button>
+      <button id="printButton">הדפס</button>
+      <button id="homeButton">עמוד הבית</button>
+      <button id="resetButton">איפוס</button>
+    </div>
+  </div>
+
+  <script>
+    // עדכון תאריך נוכחי
+    document.getElementById("currentDate").textContent = new Date().toLocaleDateString("he-IL");
+    // כאן ניתן להוסיף לוגיקה לעדכון מספר הצעת מחיר לפי הצורך
+
+    // ניהול כפתורי ניווט/פעולות
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    document.getElementById("homeButton").addEventListener("click", () => window.location.href = "home.html");
+    document.getElementById("resetButton").addEventListener("click", () => location.reload());
+    document.getElementById("shareButton").addEventListener("click", () => {
+      // כאן ניתן להוסיף לוגיקה לשיתוף ההצעה
+      alert("שתף את ההצעה");
+    });
+  </script>
+</body>
+</html>

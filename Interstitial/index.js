@@ -1,5 +1,4 @@
 
-  
   document.addEventListener("DOMContentLoaded", () => {
     function showMoreProjects() {
         const moreProjectsButton = document.getElementById('more-projects');

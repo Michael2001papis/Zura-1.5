@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>חשבונית</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      text-align: center;
+      background-color: #f1f1f1;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      margin: 10px 0;
+    }
+    .invoice-info, .payment-details, .company-info {
+      text-align: left;
+      margin: 20px 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .invoice-info label,
+    .company-info label {
+      display: block;
+      margin: 8px 0 4px;
+      font-weight: bold;
+    }
+    .invoice-info input,
+    .company-info input,
+    .invoice-info textarea,
+    .company-info textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .payment-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .payment-table th, .payment-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .payment-table th {
+      background: #007bff;
+      color: #fff;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .buttons button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      min-width: 150px;
+    }
+    .buttons button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    /* רספונסיביות */
+    @media (max-width: 768px) {
+      .payment-table, .invoice-info, .company-info {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>פנקס חשבונית/קבלות לעסק</h1>
+    <p>נא למלא את הפרטים הבאים</p>
+    
+    <div class="invoice-info">
+      <label for="invoiceNumber">מספר חשבונית:</label>
+      <input type="text" id="invoiceNumber" placeholder="הכנס מספר חשבונית">
+
+      <label for="recipient">לכבוד:</label>
+      <input type="text" id="recipient" placeholder="שם מקבל החשבונית">
+
+      <label for="invoiceDate">תאריך:</label>
+      <input type="text" id="invoiceDate" placeholder="הכנס תאריך">
+
+      <label for="address">כתובת:</label>
+      <input type="text" id="address" placeholder="הכנס כתובת">
+
+      <label for="details">פרטים:</label>
+      <textarea id="details" rows="3" placeholder="הכנס פרטים"></textarea>
+
+      <label for="totalBeforeVAT">סה"כ לפני מע"מ:</label>
+      <input type="text" id="totalBeforeVAT" placeholder="הכנס סכום">
+
+      <label for="vatAmount">מע"מ (18%):</label>
+      <input type="text" id="vatAmount" placeholder="הכנס סכום מע"מ">
+
+      <label for="totalWithVAT">סה"כ כולל מע"מ:</label>
+      <input type="text" id="totalWithVAT" placeholder="הכנס סכום כולל">
+
+      <label for="taxDeduction">ניכוי מס במקור %:</label>
+      <input type="text" id="taxDeduction" placeholder="הכנס אחוז">
+
+      <label for="finalTotal">סה"כ:</label>
+      <input type="text" id="finalTotal" placeholder="הכנס סה"כ">
+
+      <label for="paymentMethod">אופן התשלום (מזומן, העברה בנקאית, ש"ק וכו'):</label>
+      <input type="text" id="paymentMethod" placeholder="הכנס אופן תשלום">
+    </div>
+
+    <div class="payment-details">
+      <h2>פרטי אופן התשלום</h2>
+      <table class="payment-table">
+        <thead>
+          <tr>
+            <th>סניף</th>
+            <th>בנק</th>
+            <th>ש"ק מספר</th>
+            <th>מספר חשבון</th>
+            <th>זמן פרעון</th>
+            <th>סכום (₪)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="סניף"></td>
+            <td><input type="text" placeholder="בנק"></td>
+            <td><input type="text" placeholder="ש"ק מספר"></td>
+            <td><input type="text" placeholder="מספר חשבון"></td>
+            <td><input type="text" placeholder="זמן פרעון"></td>
+            <td><input type="text" placeholder="סכום"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>סה"כ נתקבל:</strong> <input type="text" placeholder="הכנס סכום"></p>
+      <p><strong>סה"כ שיקים:</strong> <input type="text" placeholder="הכנס סכום שיקים"></p>
+    </div>
+
+    <div class="company-info">
+      <label for="receiptsCount">כמות הקבלות:</label>
+      <input type="text" id="receiptsCount" placeholder="הכנס כמות">
+
+      <label for="invoiceAmount">סכום כסף של החשבונית:</label>
+      <input type="text" id="invoiceAmount" placeholder="הכנס סכום כסף">
+
+      <label for="businessName">שם העסק:</label>
+      <input type="text" id="businessName" placeholder="הכנס שם העסק">
+
+      <label for="taxNumber">מספר ח.פ/ ע.מ:</label>
+      <input type="text" id="taxNumber" placeholder="הכנס מספר">
+
+      <label for="companyAddress">כתובת:</label>
+      <input type="text" id="companyAddress" placeholder="הכנס כתובת">
+
+      <label for="companyPhone">טלפון:</label>
+      <input type="text" id="companyPhone" placeholder="הכנס טלפון">
+    </div>
+    
+    <div class="signature">
+      <label>חתימה:</label>
+      <div style="border:1px solid #ccc; padding:10px;">[תיבת חתימה]</div>
+    </div>
+    
+    <div class="buttons">
+      <button id="printButton">הדפס</button>
+      <button id="homeButton">עמוד הבית</button>
+      <button id="resetButton">איפוס</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    document.getElementById("homeButton").addEventListener("click", () => window.location.href = "home.html");
+    document.getElementById("resetButton").addEventListener("click", () => location.reload());
+  </script>
+</body>
+</html>
