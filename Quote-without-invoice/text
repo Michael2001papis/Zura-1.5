@@ -1,0 +1,185 @@
+
+body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      text-align: center;
+      background-color: #f1f1f1;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    header .date {
+      font-weight: bold;
+    }
+    h1, h2 {
+      margin: 10px 0;
+    }
+    .business-info, .quote-info {
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .quote-info label {
+      display: block;
+      margin: 8px 0 4px;
+      font-weight: bold;
+    }
+    .quote-info input, .quote-info textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .buttons button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      min-width: 150px;
+    }
+    .buttons button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        background-color: #f4f4f9;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .date {
+        font-size: 16px;
+        color: #777;
+      }
+      .quote-number {
+        font-size: 18px;
+        color: #333;
+      }
+      .business-info p,
+      .quote-info label,
+      .quote-info input,
+      .quote-info textarea,
+      .signature label {
+        margin: 10px 0;
+        font-size: 16px;
+      }
+      .business-info p {
+        color: #555;
+      }
+      .quote-info input,
+      .quote-info textarea,
+      .signature input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .quote-info textarea {
+        resize: vertical;
+      }
+      .quote-table h2,
+      .payment-terms h2 {
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .quote-table p,
+      .payment-terms p {
+        font-size: 16px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      .buttons button {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+      .buttons button:hover {
+        background-color: #45a049;
+      }
+      .signature div {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+        }
+        .buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        .buttons button {
+          margin: 5px 0;
+          width: 100%;
+        }
+      }
