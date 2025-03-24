@@ -8,19 +8,36 @@ function showMoreProjects() {
       
       // סימולציה של טעינה (ניתן להחליף בקריאה ל-API)
       setTimeout(() => {
-        // יצירת שני פרויקטים נוספים
-        for (let i = 0; i < 2; i++) {
+        // מערכים של תמונות לפני ואחרי
+        const beforeImages = [
+          "../Poto/before/Bedroom-4.jpg",
+          "../Poto/before/Bedroom-5.jpg",
+          "../Poto/before/Deep-wall.jpg",
+          "../Poto/before/Bedroom-6.jpg"
+        ];
+      
+        const afterImages = [
+          "../Poto/after/Bedroom-4.jpg",
+          "../Poto/after/Bedroom-5.jpg",
+          "../Poto/after/Deep-wall.jpg",
+          "../Poto/after/Bedroom-6.jpg"
+        ];
+      
+        // יצירת פרויקטים נוספים לפי כמות התמונות
+        for (let i = 0; i < beforeImages.length; i++) {
           const project = document.createElement('div');
           project.className = "project";
           project.innerHTML = `
-            <img src="before_new${i}.jpg" class="before" alt="לפני">
-            <img src="after_new${i}.jpg" class="after" alt="אחרי">
+            <img src="${beforeImages[i]}" class="before" alt="לפני">
+            <img src="${afterImages[i]}" class="after" alt="אחרי">
           `;
           projectGallery.appendChild(project);
         }
+      
         moreProjectsButton.textContent = "הצג פחות פרויקטים";
         moreProjectsButton.dataset.loaded = "true";
       }, 1500);
+      
     } else {
       // הסרת הפרויקטים הנוספים (הנחה: שני הפרויקטים האחרונים)
       const projects = projectGallery.querySelectorAll('.project');
