@@ -1,16 +1,25 @@
 # GitHub Pages configuration
-theme: jekyll-theme-minimal
+# Disable Jekyll processing for static site
+safe: true
+include: []
+exclude: []
+keep_files: []
 
-# Enable plugins
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
+# Disable Jekyll plugins
+plugins: []
 
 # Exclude files from processing
 exclude:
   - README.md
   - .gitignore
   - .git/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - .vercelignore
+  - vercel.json
+  - next.config.js
+  - public/
 
 # Include files
 include:
