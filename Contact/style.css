@@ -42,17 +42,39 @@
   /* כפתור יצירת הקשר */
   .contact-actions .contact-btn {
     display: inline-block;
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
     color: #fff;
     text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-width: 140px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
   }
   
   .contact-actions .contact-btn:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+  }
+  
+  .contact-actions .contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .contact-actions .contact-btn:hover::before {
+    left: 100%;
   }
   
   /* עיצוב לפוטר של זכויות יוצרים */
@@ -62,17 +84,39 @@
   }
   
   .developer-link {
-    font-size: 1.2rem;
-    color: #000;
-    background-color: skyblue;
-    padding: 8px 16px;
-    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    padding: 14px 28px;
+    border-radius: 12px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-width: 140px;
+    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.2);
   }
   
   .developer-link:hover {
-    background-color: deepskyblue;
+    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+  }
+  
+  .developer-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .developer-link:hover::before {
+    left: 100%;
   }
   
   /* רספונסיביות: התאמה למכשירים קטנים */

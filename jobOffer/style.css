@@ -48,19 +48,13 @@ html, body {
   }
   
   .home-button {
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    border-radius: 50px;
-    padding: 12px 30px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+    /* העיצוב החדש מוגדר ב-common.css */
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
   }
   
   .home-button:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 1);
+    background: linear-gradient(135deg, #fee140 0%, #fa709a 100%);
   }
   
   /* התאמה למסכים קטנים */

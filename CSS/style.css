@@ -22,30 +22,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.buttons button {
-    background-color: #4CAF50; /* צבע רקע ירוק כהה */
-    color: white; /* צבע טקסט לבן */
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px; /* פינות מעוגלות */
-    text-transform: uppercase; /* אותיות גדולות */
-    letter-spacing: 1px; /* רווח בין האותיות */
-    transition: all 0.3s ease;
-    width: 180px; /* רוחב הכפתור */
-}
-.buttons button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* הצללה קלה */
-}
-.buttons button {
-    font-size: 14px;
-    padding: 8px 16px;
-    width: 80%;
-    margin-bottom: 10px;
-}
 @media (max-width: 768px) {
     #calculationTable thead {
         display: none;
@@ -68,26 +44,6 @@ body {
     #addRow {
         width: 100%;
         margin-top: 15px;
-        padding: 12px 24px;
-        background-color: #3498db; 
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    #addRow:hover {
-        background-color: #2980b9;
-        transform: scale(1.05);
     }
 }
-#printButton {
-    background-color: #007BFF;
-}
-#homeButton {
-    background-color: #FF9800; 
-}
-#resetButton {
-    background-color: #f44336;
-}
+/* הצבעים הספציפיים מוגדרים כעת ב-common.css */

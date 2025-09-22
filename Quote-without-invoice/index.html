@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>הצעת מחיר ללא חשבונית</title>
+  <link rel="stylesheet" href="../CSS/common.css">
   <style>
     * {
   margin: 0;
@@ -16,56 +17,63 @@ body {
   background-color: #f7f7f7;
   color: #333;
   line-height: 1.6;
-  padding: 20px;
+  padding: 0;
+  overflow-x: hidden; /* מניעת גלילה אופקית */
 }
+
+/* כותרת וניווט עליון */
+.page-header {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #fff;
+  padding: 22px 12px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.page-header nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.page-header nav a { text-decoration: none; }
+.page-header nav a button {
+  background: #555; color: #fff; border: none; border-radius: 22px;
+  padding: 8px 14px; cursor: pointer; transition: background .25s ease, transform .2s ease; white-space: normal;
+}
+.page-header nav a button:hover { background:#777; transform: translateY(-1px); }
 
 .container {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 16px auto;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 14px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 40px;
+  padding: 24px;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border-bottom: 2px solid #eaeaea;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
-.date {
-  font-size: 16px;
-  color: #7d7d7d;
-  font-weight: 400;
-}
+.date { font-size: 16px; color: #7d7d7d; font-weight: 400; }
 
-.quote-number {
-  font-size: 20px;
-  color: #333;
-  font-weight: bold;
-}
+.quote-number { font-size: 20px; color: #333; font-weight: bold; }
 
 .business-info p {
   font-size: 16px;
   color: #555;
-  margin: 15px 0;
+  margin: 12px 0;
 }
 
-.business-info strong {
-  font-weight: bold;
-  color: #333;
-}
+.business-info strong { font-weight: bold; color: #333; }
 
 input, textarea {
   width: 100%;
-  padding: 14px;
-  margin: 12px 0;
+  padding: 12px;
+  margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
   background-color: #fafafa;
   color: #333;
@@ -73,127 +81,73 @@ input, textarea {
 
 input:focus, textarea:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102,126,234,.12);
   background-color: #fff;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
+textarea { resize: vertical; min-height: 100px; }
 
-label {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: #444;
-}
+label { font-size: 16px; margin-bottom: 6px; color: #444; display: block; font-weight: 600; }
 
-hr {
-  border: 0;
-  height: 1px;
-  background-color: #f0f0f0;
-  margin: 30px 0;
-}
+hr { border: 0; height: 1px; background-color: #f0f0f0; margin: 20px 0; }
 
-.quote-info, .additional-notes, .signature, .payment-terms {
-  margin-bottom: 30px;
-}
+.quote-info, .additional-notes, .signature, .payment-terms { margin-bottom: 20px; }
 
-h2 {
-  font-size: 22px;
-  color: #333;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
+h2 { font-size: 22px; color: #333; margin-bottom: 12px; font-weight: bold; }
 
-.buttons {
-  display: flex;
-  justify-content: flex-start;
-  gap: 12px;
-}
+.buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-transform: uppercase;
-}
+button { /* העיצוב החדש מוגדר ב-common.css */ text-transform: uppercase; white-space: normal; }
 
-button:hover {
-  background-color: #45a049;
-}
-
-button:active {
-  background-color: #388e3c;
-}
-
-button:disabled {
-  background-color: #d3d3d3;
-  cursor: not-allowed;
-}
+button:disabled { background-color: #d3d3d3; cursor: not-allowed; }
 
 .signature #clientSignature {
-  width: 100%;
-  height: 120px;
-  border: 2px dashed #ccc;
-  border-radius: 8px;
-  text-align: center;
-  padding: 30px 0;
-  margin: 10px 0;
-  font-size: 16px;
-  color: #777;
+  width: 100%; height: 120px; border: 2px dashed #ccc; border-radius: 8px; text-align: center; padding: 30px 0; margin: 10px 0; font-size: 16px; color: #777;
 }
 
-.signature input {
-  background-color: #fafafa;
-  padding: 14px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-}
+.signature input { background-color: #fafafa; padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd; }
+.signature input:focus { background-color: #fff; border-color: #667eea; box-shadow: 0 0 0 4px rgba(102,126,234,.12); }
 
-.signature input:focus {
-  background-color: #fff;
-  border-color: #4CAF50;
-}
-
+/* רספונסיביות */
 @media (max-width: 768px) {
-  .container {
-    padding: 20px;
-  }
-
-  .buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .buttons button {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .quote-number {
-    margin-top: 10px;
-  }
-
-  .quote-info, .signature, .payment-terms {
-    margin-bottom: 20px;
-  }
+  .container { padding: 16px; margin: 12px; }
+  header { flex-direction: column; text-align: center; gap: 6px; }
+  .buttons { flex-direction: column; align-items: stretch; }
+  .buttons button { width: 100%; }
+  .quote-info, .signature, .payment-terms { margin-bottom: 16px; }
 }
 
+@media (max-width: 480px) {
+  .page-header h1 { font-size: 1.3rem; }
+  .page-header { padding: 16px 10px; }
+  .container { padding: 14px; }
+  input, textarea { font-size: 15px; padding: 10px; }
+  label { font-size: 15px; }
+}
+
+/* התאמה ממוקדת ל-Galaxy S20 Ultra (390–420px) */
+@media (min-width: 390px) and (max-width: 420px) {
+  .page-header nav { gap: 6px; }
+  .page-header nav a { flex: 1 1 calc(50% - 6px); display: flex; justify-content: center; }
+  .page-header nav a button { width: 100%; padding: 6px 10px; font-size: .92rem; }
+  .container { margin: 10px; padding: 12px; border-radius: 12px; }
+  header { gap: 4px; }
+  .buttons { gap: 8px; }
+}
   </style>
 </head>
 <body>
+
+  <div class="page-header">
+    <h1>הצעת מחיר ללא חשבונית</h1>
+    <nav>
+      <a href="../index.html"><button>עמוד הבית</button></a>
+      <a href="../GeneralProjectsPage/index.html"><button>פרויקטים</button></a>
+      <a href="../Contact/index.html"><button>צור קשר</button></a>
+      <a href="../Developerrights/index.html"><button>זכויות המפתח</button></a>
+    </nav>
+  </div>
 
   <div class="container">
     <header>
@@ -233,7 +187,7 @@ button:disabled {
     </div>
     
     <div class="buttons">
-      <button id="shareQuoteButton">שתף הצעת מחיר</button>
+      <button id="shareQuoteButton" class="print-btn">שתף הצעת מחיר</button>
     </div>
     
     <div class="signature">
@@ -247,14 +201,13 @@ button:disabled {
       <input type="text" id="clientName" placeholder="הכנס שם לקוח">
       
       <label for="clientSignature">חתימת הלקוח:</label>
-      <div id="clientSignature" style="border:1px solid #ccc; padding: 10px;">
-        <!-- כאן תוכל להוסיף פתרון לחתימה, לדוג' באמצעות canvas -->
+      <div id="clientSignature" style="border:1px solid #ccc; padding: 10px; border-radius: 8px;">
         <p>הלקוח חותם כאן</p>
       </div>
     </div>
     
     <div class="buttons">
-      <button id="shareSignatureButton">שתף פרטי לקוח וחתימה</button>
+      <button id="shareSignatureButton" class="quote-btn">שתף פרטי לקוח וחתימה</button>
     </div>
     
     <div class="payment-terms">
@@ -268,47 +221,18 @@ button:disabled {
     </div>
     
     <div class="buttons">
-      <button id="sharePaymentButton">שתף תנאי תשלום</button>
+      <button id="sharePaymentButton" class="home-btn">שתף תנאי תשלום</button>
     </div>
     
     <div class="buttons">
-      <button id="shareButton">שתף</button>
-      <button id="printButton">הדפס</button>
-      <button id="homeButton">עמוד הבית</button>
-      <button id="resetButton">איפוס</button>
+      <button id="shareButton" class="print-btn">שתף</button>
+      <button id="printButton" class="print-btn">הדפס</button>
+      <button id="homeButton" class="home-btn">עמוד הבית</button>
+      <button id="resetButton" class="reset-btn">איפוס</button>
     </div>
   </div>
 
   <script>
-    // // עדכון תאריך נוכחי
-    // document.getElementById("currentDate").textContent = new Date().toLocaleDateString("he-IL");
-    // // כאן ניתן להוסיף לוגיקה לעדכון מספר הצעת מחיר לפי הצורך
-
-    // // ניהול כפתורי ניווט/פעולות
-    // document.getElementById("printButton").addEventListener("click", () => window.print());
-    // document.getElementById("homeButton").addEventListener("click", () => window.location.href = "home.html");
-    // document.getElementById("resetButton").addEventListener("click", () => location.reload());
-    // document.getElementById("shareButton").addEventListener("click", () => {
-    //   const recipientEmail = document.getElementById("recipientEmail").value; // קבלת כתובת המייל מהמשתמש
-    //   const subject = "הצעת מחיר"; // כותרת המייל
-    //   const body = `
-    //     שלום,
-        
-    //     אני שולח לך את הצעת המחיר המבוקשת. אנא עיין בה ומידע נוסף יכול להימסר בהמשך.
-        
-    //     מספר הצעת מחיר: ${document.getElementById("quoteNumber").textContent}
-    //     שם העסק: מ.פ. פרויקטים
-    //     כתובת: גולדברג הנדבון 14, רשל"צ
-    //     טלפון: 054-582-0008
-    //     אימייל: Zurapapismedov@gmail.com
-
-    //     ${document.getElementById("quoteText").value}  // המלל הנלווה להסבר
-    //   `;
-      
-    //   // פתיחת Gmail עם כתובת נמען, כותרת וגוף הודעה
-    //   window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    // });
-    
     // עדכון תאריך נוכחי
   document.getElementById("currentDate").textContent = new Date().toLocaleDateString("he-IL");
 
@@ -334,8 +258,7 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
     const recipientEmail = document.getElementById("recipientEmail").value;
     const notes = document.getElementById("notes").value;
 
-    // יצירת גוף המייל
-    const subject = "הצעת מחיר"; // כותרת המייל
+    const subject = "הצעת מחיר";
     const body = `
       שלום ${recipient},
 
@@ -349,8 +272,6 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
       תודה,
       [שם שלך]
     `;
-    
-    // פתיחת Gmail עם כתובת נמען, כותרת וגוף הודעה
     window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
@@ -359,10 +280,10 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
     const closingMessage = document.getElementById("closing").value;
     const clientPhone = document.getElementById("clientPhone").value;
     const clientName = document.getElementById("clientName").value;
-    const clientSignature = document.getElementById("clientSignature").innerText;  // כאן תוכל לשלב פתרון לחתימה
+    const clientSignature = document.getElementById("clientSignature").innerText;
     
-    const recipientEmail = document.getElementById("recipientEmail").value; // קבלת כתובת המייל מהמשתמש
-    const subject = "פרטי הלקוח והחתימה"; // כותרת המייל
+    const recipientEmail = document.getElementById("recipientEmail").value;
+    const subject = "פרטי הלקוח והחתימה";
     const body = `
       שלום,
       
@@ -373,8 +294,6 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
       שם לקוח: ${clientName}
       חתימת הלקוח: ${clientSignature}
     `;
-    
-    // פתיחת Gmail עם כתובת נמען, כותרת וגוף הודעה
     window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
@@ -387,8 +306,8 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
     const expirationDate = document.getElementById("paymentExpiration").value;
     const clientSignature = document.getElementById("paymentSignature").value;
     
-    const recipientEmail = document.getElementById("recipientEmail").value; // קבלת כתובת המייל מהמשתמש
-    const subject = "תנאי תשלום"; // כותרת המייל
+    const recipientEmail = document.getElementById("recipientEmail").value;
+    const subject = "תנאי תשלום";
     const body = `
       שלום,
       
@@ -401,15 +320,12 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
       תוקף ההצעה עד: ${expirationDate}
       חתימה: ${clientSignature}
     `;
-    
-    // פתיחת Gmail עם כתובת נמען, כותרת וגוף הודעה
     window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
     
-    // // כפתור "שתף"
   document.getElementById("shareButton").addEventListener("click", () => {
-    const recipientEmail = document.getElementById("recipientEmail").value; // קבלת כתובת המייל מהמשתמש
-    const subject = "הצעת מחיר"; // כותרת המייל
+    const recipientEmail = document.getElementById("recipientEmail").value;
+    const subject = "הצעת מחיר";
     const body = `
       שלום,
       
@@ -421,27 +337,15 @@ document.getElementById("businessNumber").addEventListener("input", (event) => {
       טלפון: 054-582-0008
       אימייל: Zurapapismedov@gmail.com
 
-      ${document.getElementById("quoteText").value}  // המלל הנלווה להסבר
+      ${document.getElementById("quoteText").value}
     `;
-    
-    // פתיחת Gmail עם כתובת נמען, כותרת וגוף הודעה
     window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
-  // כפתור "הדפס"
-  document.getElementById("printButton").addEventListener("click", () => {
-    window.print();  // מבצע הדפסה של הדף הנוכחי
-  });
-
-  // כפתור "עמוד הבית"
-  document.getElementById("homeButton").addEventListener("click", () => {
-    window.location.href = "home.html";  // מעביר לדף הבית
-  });
-
-  // כפתור "איפוס"
-  document.getElementById("resetButton").addEventListener("click", () => {
-    location.reload();  // טוען מחדש את הדף (מאפס את כל הקלטים והנתונים)
-  });
+  // כפתורי מערכת
+  document.getElementById("printButton").addEventListener("click", () => { window.print(); });
+  document.getElementById("homeButton").addEventListener("click", () => { window.location.href = "../index.html"; });
+  document.getElementById("resetButton").addEventListener("click", () => { location.reload(); });
   </script>
 </body>
 </html>
