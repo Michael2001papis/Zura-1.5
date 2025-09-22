@@ -1,0 +1,25 @@
+{
+  "name": "zura-projects",
+  "version": "1.5.0",
+  "description": "M.P. Projects – Renovation at Its Best",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/index.html",
+    "start": "live-server --port=3000 --open=/index.html",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "git add . && git commit -m 'Deploy to GitHub Pages' && git push origin main",
+    "vercel-build": "echo 'Static site - ready for Vercel deployment'",
+    "preview": "live-server --port=3001 --open=/index.html"
+  },
+  "keywords": [
+    "renovation",
+    "construction",
+    "projects",
+    "hebrew"
+  ],
+  "author": "Michael Papismedov",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,49 @@
+body {
+    font-family: 'Arial', sans-serif;
+    direction: rtl;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f1f1f1;
+    color: #333;
+}
+.container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* גלילה אופקית במקרים של טבלה רחבה */
+    padding: 20px;
+    margin: auto; /* ממרכז את הקונטיינר */
+}
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 15px; /* הגדלת המרווח בין הכפתורים */
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    #calculationTable thead {
+        display: none;
+    }
+    #calculationTable tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+    #calculationTable td {
+        display: block;
+        text-align: right;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+    #calculationTable td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+    }
+    #addRow {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+/* הצבעים הספציפיים מוגדרים כעת ב-common.css */

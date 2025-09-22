@@ -1,0 +1,32 @@
+# GitHub Pages configuration
+theme: jekyll-theme-minimal
+
+# Enable plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - .gitignore
+  - .git/
+
+# Include files
+include:
+  - _redirects
+
+# Site settings
+title: Zura Projects
+description: M.P. Projects – Renovation at Its Best
+url: https://michael2001papis.github.io
+baseurl: /Zura-1.5
+
+# Vercel settings
+vercel:
+  name: zura-projects
+  version: 2
+
+# Build settings
+markdown: kramdown
+highlighter: rouge

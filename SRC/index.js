@@ -1,3 +1,6 @@
+// Import utility functions
+import { getAssetPath, navigateTo } from './utils.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.querySelector("#calculationTable tbody");
     const addRowButton = document.getElementById("addRow");
@@ -120,10 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // ניהול כפתורי ניווט ופונקציות נוספות
     document.getElementById("printButton").addEventListener("click", () => window.print());
     document.getElementById("homeButton").addEventListener("click", () => {
-      window.location.href = "Interstitial/index.html";
+      navigateTo("Interstitial/index.html");
     });
     document.getElementById("quotationButton").addEventListener("click", () => {
-      window.location.href = "jobOffer/index.html";
+      navigateTo("jobOffer/index.html");
     });
     document.getElementById("resetButton").addEventListener("click", () => {
       if (confirm("האם אתה בטוח שברצונך לאפס את הדף? כל הנתונים יאבדו.")) {
@@ -131,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     document.getElementById("rights").addEventListener("click", () => {
-      window.location.href = "Developerrights/index.html";
+      navigateTo("Developerrights/index.html");
     });
   });
 
