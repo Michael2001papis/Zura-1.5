@@ -138,6 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // (הוסר קוד שגוי שהתייחס למשתנה row מחוץ להקשרו)
+  // אין קוד גלובלי נוסף
 
-  
+
