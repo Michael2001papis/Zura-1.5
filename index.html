@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קבלן מקצועי - פרויקטים איכותיים</title>
+    <meta name="description" content="קבלן מקצועי המתמחה בפרויקטים איכותיים. שירותי בנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר.">
+    <meta name="keywords" content="קבלן, בנייה, שיפוץ, עיצוב, פרויקטים">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>קבלן מקצועי</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-page="home">בית</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-page="about">אודות</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link" data-page="services">שירותים</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link" data-page="projects">פרויקטים</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-page="contact">צור קשר</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#quote" class="nav-link" data-page="quote">הצעת מחיר</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#copyright" class="nav-link" data-page="copyright">זכויות יוצרים</a>
+                </li>
+            </ul>
+            <!-- Search Button -->
+            <button class="search-toggle" id="search-toggle">
+                <i class="fas fa-search"></i>
+            </button>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <div class="search-header">
+                <h3><i class="fas fa-search"></i> חיפוש באתר</h3>
+                <button class="search-close" id="search-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="search-input-container">
+                <input type="text" id="search-input" placeholder="חפש פרויקטים, שירותים, מידע..." autocomplete="off">
+                <button class="search-btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="search-suggestions" id="search-suggestions">
+                <div class="suggestion-category">
+                    <h4>חיפושים פופולריים:</h4>
+                    <div class="suggestion-tags">
+                        <span class="suggestion-tag" data-search="וילה">וילה</span>
+                        <span class="suggestion-tag" data-search="בית">בית</span>
+                        <span class="suggestion-tag" data-search="שיפוץ">שיפוץ</span>
+                        <span class="suggestion-tag" data-search="גבס">גבס</span>
+                        <span class="suggestion-tag" data-search="צבע">צבע</span>
+                        <span class="suggestion-tag" data-search="חשמל">חשמל</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="search-results" id="search-results">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="main-content" id="main-content">
+        
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">קבלן מקצועי לפרויקטים איכותיים</h1>
+                    <p class="hero-subtitle">מתמחה בבנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary" data-page="projects">צפה בפרויקטים</a>
+                        <a href="#contact" class="btn btn-secondary" data-page="contact">צור קשר</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/hero-construction.svg" alt="פרויקט בנייה מקצועי" loading="lazy">
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="features">
+                <div class="container">
+                    <h2 class="section-title">למה לבחור בנו?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>ניסיון רב</h3>
+                            <p>מעל 15 שנות ניסיון בתחום הבנייה והשיפוץ</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3>איכות גבוהה</h3>
+                            <p>חומרים איכותיים ועבודה מקצועית ברמה הגבוהה ביותר</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>מסירות בזמן</h3>
+                            <p>השלמת פרויקטים בזמן המוסכם ובתקציב המתוכנן</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3>שירות אישי</h3>
+                            <p>ליווי אישי ומקצועי לכל אורך הפרויקט</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <h1 class="page-title">אודותינו</h1>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>הסיפור שלנו</h2>
+                        <p>אנחנו קבלן מקצועי המתמחה בפרויקטים איכותיים של בנייה, שיפוץ ועיצוב. עם מעל 15 שנות ניסיון בתחום, אנחנו מביאים איתנו ידע רב, ניסיון מעשי ומחויבות לאיכות הגבוהה ביותר.</p>
+                        
+                        <h3>החזון שלנו</h3>
+                        <p>לספק שירותי בנייה ושיפוץ ברמה הגבוהה ביותר, תוך שמירה על איכות, דיוק ומסירות ללקוח. אנחנו מאמינים שכל פרויקט הוא ייחודי ודורש גישה מותאמת אישית.</p>
+                        
+                        <h3>הערכים שלנו</h3>
+                        <ul>
+                            <li><strong>איכות:</strong> שימוש בחומרים הטובים ביותר ובעבודה מקצועית</li>
+                            <li><strong>אמינות:</strong> עמידה בזמנים ובתקציבים המוסכמים</li>
+                            <li><strong>שקיפות:</strong> תקשורת פתוחה וברורה עם הלקוח</li>
+                            <li><strong>מקצועיות:</strong> צוות עובדים מיומן ומנוסה</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/about-team.svg" alt="צוות הקבלן המקצועי" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Page -->
+        <section id="services" class="page">
+            <div class="container">
+                <h1 class="page-title">השירותים שלנו</h1>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>בנייה חדשה</h3>
+                        <p>בניית בתים פרטיים, דירות ופרויקטים מסחריים מהתחלה ועד הסוף</p>
+                        <ul>
+                            <li>תכנון אדריכלי</li>
+                            <li>הכנת יסודות</li>
+                            <li>בניית שלד</li>
+                            <li>גימורים איכותיים</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h3>שיפוץ דירות</h3>
+                        <p>שיפוץ מלא או חלקי של דירות, בתים ומשרדים</p>
+                        <ul>
+                            <li>שיפוץ מטבחים</li>
+                            <li>שיפוץ חדרי רחצה</li>
+                            <li>שיפוץ סלונים</li>
+                            <li>שיפוץ חדרי שינה</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>עיצוב פנים</h3>
+                        <p>שירותי עיצוב פנים מותאמים אישית לכל לקוח</p>
+                        <ul>
+                            <li>תכנון עיצובי</li>
+                            <li>בחירת חומרים</li>
+                            <li>בחירת ריהוט</li>
+                            <li>ליווי בביצוע</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <h3>תחזוקה ושיפורים</h3>
+                        <p>שירותי תחזוקה שוטפת ושיפורים קטנים</p>
+                        <ul>
+                            <li>תיקוני נזילות</li>
+                            <li>צביעה</li>
+                            <li>החלפת אריחים</li>
+                            <li>תיקוני חשמל</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Page -->
+        <section id="projects" class="page">
+            <div class="container">
+                <h1 class="page-title">הפרויקטים שלנו</h1>
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">הכל</button>
+                    <button class="filter-btn" data-filter="residential">מגורים</button>
+                    <button class="filter-btn" data-filter="commercial">מסחרי</button>
+                    <button class="filter-btn" data-filter="renovation">שיפוץ</button>
+                </div>
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="container">
+                <h1 class="page-title">צור קשר</h1>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>בואו נדבר על הפרויקט שלכם</h2>
+                        <p>אנחנו כאן לעזור לכם להגשים את החלום שלכם. צרו איתנו קשר לקבלת הצעת מחיר ללא התחייבות.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>טלפון</h4>
+                                    <p>050-123-4567</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>אימייל</h4>
+                                    <p>info@contractor.co.il</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>כתובת</h4>
+                                    <p>רחוב הבנייה 123, תל אביב</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>שעות פעילות</h4>
+                                    <p>א'-ה': 8:00-18:00<br>ו': 8:00-14:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">שם מלא *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">אימייל *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">טלפון</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">סוג השירות</label>
+                                <select id="service" name="service">
+                                    <option value="">בחר שירות</option>
+                                    <option value="construction">בנייה חדשה</option>
+                                    <option value="renovation">שיפוץ דירה</option>
+                                    <option value="design">עיצוב פנים</option>
+                                    <option value="maintenance">תחזוקה</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">הודעה *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">שלח הודעה</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Page -->
+        <section id="quote" class="page">
+            <div class="container">
+                <h1 class="page-title">הצעת מחיר</h1>
+                <div class="quote-content">
+                    <div class="quote-intro">
+                        <h2>קבלו הצעת מחיר מקצועית</h2>
+                        <p>מלאו את הטופס הבא כדי לקבל הצעת מחיר מדויקת לפרויקט שלכם. החישוב מבוסס על פרמטרים מקצועיים ומחירים עדכניים בשוק.</p>
+                    </div>
+                    
+                    <div class="quote-calculator">
+                        <form id="quote-form">
+                            <div class="form-group">
+                                <label for="customer-name">שם הלקוח *</label>
+                                <input type="text" id="customer-name" name="customerName" required placeholder="הכנס שם מלא">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customer-address">כתובת הלקוח</label>
+                                <input type="text" id="customer-address" name="customerAddress" placeholder="הכנס כתובת מלאה">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customer-phone">מספר טלפון *</label>
+                                <input type="tel" id="customer-phone" name="customerPhone" required placeholder="050-1234567">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customer-note">הערה אישית</label>
+                                <textarea id="customer-note" name="customerNote" rows="3" placeholder="הערות נוספות או בקשות מיוחדות"></textarea>
+                            </div>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="project-type">סוג פרויקט *</label>
+                                    <select id="project-type" name="projectType" required>
+                                        <option value="">בחר סוג פרויקט</option>
+                                        <option value="villa">וילה</option>
+                                        <option value="house">בית</option>
+                                        <option value="yard">חצר</option>
+                                        <option value="roof">גג</option>
+                                        <option value="other">אחר</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="work-type">סוג עבודה *</label>
+                                    <select id="work-type" name="workType" required>
+                                        <option value="">בחר סוג עבודה</option>
+                                        <option value="gypsum">גבס</option>
+                                        <option value="plaster">שפכטל</option>
+                                        <option value="paint">צבע</option>
+                                        <option value="insulation">איטום</option>
+                                        <option value="reinforcement">חיזוק</option>
+                                        <option value="demolition">הריסה</option>
+                                        <option value="electrical">חשמל</option>
+                                        <option value="plumbing">ניאגרה</option>
+                                        <option value="other-work">אחר</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="work-price">מחיר ליחידה (₪) *</label>
+                                    <input type="number" id="work-price" name="workPrice" min="0" step="0.01" placeholder="הכנס מחיר" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="work-quantity">כמות *</label>
+                                    <input type="number" id="work-quantity" name="workQuantity" min="0" step="0.01" placeholder="הכנס כמות" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quantity-unit">יחידה *</label>
+                                    <select id="quantity-unit" name="quantityUnit" required>
+                                        <option value="">בחר יחידה</option>
+                                        <option value="sqm">מ"ר</option>
+                                        <option value="sqcm">מ"א</option>
+                                        <option value="linear">י"ח</option>
+                                        <option value="meter">מטר</option>
+                                        <option value="other-unit">אחר</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="work-percentage">אחוז עבודה *</label>
+                                    <select id="work-percentage" name="workPercentage" required>
+                                        <option value="">בחר אחוז</option>
+                                        <option value="50">50%</option>
+                                        <option value="60">60%</option>
+                                        <option value="70">70%</option>
+                                        <option value="80">80%</option>
+                                        <option value="90">90%</option>
+                                        <option value="100">100%</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="special-discount">הנחה</label>
+                                    <select id="special-discount" name="specialDiscount">
+                                        <option value="0">ללא הנחה</option>
+                                        <option value="10">10%</option>
+                                        <option value="15">15%</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="vat-rate">מע"מ *</label>
+                                    <select id="vat-rate" name="vatRate" required>
+                                        <option value="17">17%</option>
+                                        <option value="18" selected>18%</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="custom-project-group" style="display: none;">
+                                <label for="custom-project">פירוט סוג הפרויקט</label>
+                                <input type="text" id="custom-project" name="customProject" maxlength="30" placeholder="הכנס תיאור">
+                            </div>
+
+                            <div class="form-group" id="custom-work-group" style="display: none;">
+                                <label for="custom-work">פירוט סוג העבודה</label>
+                                <input type="text" id="custom-work" name="customWork" maxlength="30" placeholder="הכנס תיאור">
+                            </div>
+
+                            <div class="form-group" id="custom-unit-group" style="display: none;">
+                                <label for="custom-unit">פירוט יחידת מידה</label>
+                                <input type="text" id="custom-unit" name="customUnit" maxlength="20" placeholder="הכנס יחידה">
+                            </div>
+
+                            <div class="additional-quotes-section">
+                                <h4>הצעות נוספות</h4>
+                                <div id="additional-quotes">
+                                    <!-- Additional quotes will be added here -->
+                                </div>
+                                <button type="button" class="btn btn-outline" id="add-quote-btn">
+                                    <i class="fas fa-plus"></i> הוסף הצעה נוספת
+                                </button>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-large">
+                                    <i class="fas fa-calculator"></i> חשב הצעת מחיר
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="quote-result" id="quote-result" style="display: none;">
+                        <div class="quote-header">
+                            <h3>הצעת המחיר שלכם</h3>
+                            <div class="quote-info">
+                                <p><strong>תאריך:</strong> <span id="quote-date"></span></p>
+                                <p><strong>שם הלקוח:</strong> <span id="quote-customer"></span></p>
+                                <p><strong>כתובת:</strong> <span id="quote-address"></span></p>
+                                <p><strong>טלפון:</strong> <span id="quote-phone"></span></p>
+                                <p><strong>הערה:</strong> <span id="quote-note"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="quote-details">
+                            <h4>פרטי הפרויקט</h4>
+                            <div class="quote-detail-item">
+                                <span class="detail-label">סוג פרויקט:</span>
+                                <span class="detail-value" id="quote-project-type"></span>
+                            </div>
+                            <div class="quote-detail-item">
+                                <span class="detail-label">אחוז עבודה:</span>
+                                <span class="detail-value" id="quote-work-percentage"></span>
+                            </div>
+                            <div class="quote-detail-item">
+                                <span class="detail-label">סוג עבודה:</span>
+                                <span class="detail-value" id="quote-work-type"></span>
+                            </div>
+                        </div>
+
+                        <div class="quote-breakdown">
+                            <h4>פירוט מחירים</h4>
+                            <div class="quote-table-container">
+                                <table class="quote-table" id="quote-table">
+                                    <thead>
+                                        <tr>
+                                            <th>מס'</th>
+                                            <th>תיאור העבודה</th>
+                                            <th>מחיר ליחידה</th>
+                                            <th>כמות</th>
+                                            <th>אחוז עבודה</th>
+                                            <th>הנחה</th>
+                                            <th>סה"כ ללא מע"מ</th>
+                                            <th>מע"מ</th>
+                                            <th>סה"כ כולל מע"מ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="quote-table-body">
+                                        <!-- Quote items will be added here -->
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="subtotal-row">
+                                            <td colspan="6"><strong>סה"כ ללא מע"מ:</strong></td>
+                                            <td><strong id="subtotal">₪0</strong></td>
+                                            <td><strong id="vat-amount">₪0</strong></td>
+                                            <td><strong id="total-price">₪0</strong></td>
+                                        </tr>
+                                        <tr class="vat-row">
+                                            <td colspan="6"><strong>מע"מ (<span id="vat-percentage">18</span>%):</strong></td>
+                                            <td></td>
+                                            <td><strong id="vat-amount-footer">₪0</strong></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="total-row">
+                                            <td colspan="6"><strong>סה"כ כולל מע"מ:</strong></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><strong id="total-price-footer">₪0</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="quote-note">
+                            <p><strong>הערה:</strong> זהו אומדן ראשוני. המחיר הסופי ייקבע לאחר בדיקה מקצועית של הפרויקט.</p>
+                            <p>המחיר אינו מחייב עד לחתימה על חוזה.</p>
+                        </div>
+                        
+                        <div class="quote-actions">
+                            <button type="button" class="btn btn-primary" id="save-quote-btn">שמור הצעת מחיר</button>
+                            <button type="button" class="btn btn-secondary" id="print-quote-result-btn">הדפס הצעת מחיר</button>
+                            <button type="button" class="btn btn-secondary" id="new-quote-btn">הצעה חדשה</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Copyright Page -->
+        <section id="copyright" class="page">
+            <div class="container">
+                <h1 class="page-title">זכויות יוצרים והגנות משפטיות</h1>
+                <div class="copyright-content">
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-copyright"></i> זכויות יוצרים - האתר</h2>
+                        <p>כל הזכויות באתר זה, כולל אך לא רק: עיצוב, קוד, תוכן, תמונות, לוגו, גרפיקה, טקסטים, מבנה האתר וכל רכיב אחר, מוגנים בזכויות יוצרים על פי חוק זכות יוצרים התשס"ח-2007.</p>
+                        <p>האתר פותח ונוצר על ידי מפתח מקצועי עבור מ.פ פרוייקטים, וכל הזכויות בו שייכות לבעליו החוקיים.</p>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-building"></i> זכויות הקבלן - מ.פ פרוייקטים</h2>
+                        <p>מ.פ פרוייקטים הינו בעל הזכויות הבלעדיות באתר זה ובכל התוכן המוצג בו, לרבות:</p>
+                        <ul>
+                            <li>שם החברה, לוגו וסימני מסחר</li>
+                            <li>תמונות הפרויקטים והעבודות שבוצעו</li>
+                            <li>תיאורי השירותים והמוצרים</li>
+                            <li>כל מידע עסקי ופרטי הלקוחות המוצגים</li>
+                            <li>העיצוב הכללי והזהות החזותית של האתר</li>
+                        </ul>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-code"></i> זכויות המפתח</h2>
+                        <p>הקוד הטכני של האתר, האלגוריתמים, הפונקציונליות הטכנית וכל רכיב פיתוח אחר נוצרו על ידי מפתח מקצועי ומוגנים בזכויות יוצרים.</p>
+                        <p>המפתח שומר על הזכויות בקוד המקור, אך מעניק רישיון שימוש מלא למ.פ פרוייקטים לשימוש באתר.</p>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-gavel"></i> הגנות משפטיות</h2>
+                        <p><strong>איסור העתקה:</strong> כל העתקה, שכפול, הפצה או שימוש בתוכן האתר ללא רשות מפורשת בכתב מהווה הפרת זכויות יוצרים ועלולה לגרור תביעה משפטית.</p>
+                        <p><strong>סימני מסחר:</strong> כל השימוש בשם "מ.פ פרוייקטים", הלוגו או סימני מסחר אחרים ללא רשות מהווה הפרת סימן מסחר.</p>
+                        <p><strong>אחריות:</strong> כל הפרה של זכויות יוצרים עלולה לגרור פיצויים כספיים משמעותיים וצווי מניעה.</p>
+                        <p><strong>הגנות טכניות:</strong> האתר מוגן באמצעות הצפנת SSL, מערכות הגנה מפני העתקה ומעקב אחר שימוש לא מורשה.</p>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-shield-alt"></i> שימוש מותר ואסור</h2>
+                        <p><strong>שימוש מותר:</strong></p>
+                        <ul>
+                            <li>צפייה בתוכן האתר למטרות אישיות ולא מסחריות</li>
+                            <li>הדפסת עמודים בודדים למטרות אישיות</li>
+                            <li>שיתוף קישורים לעמודים באתר</li>
+                            <li>יצירת קשר עם החברה באמצעות הטופס באתר</li>
+                        </ul>
+                        <p><strong>שימוש אסור ללא רישיון:</strong></p>
+                        <ul>
+                            <li>העתקה, שכפול או הפצה של תוכן האתר</li>
+                            <li>שימוש בתוכן למטרות מסחריות</li>
+                            <li>שינוי, עריכה או יצירת יצירות נגזרות</li>
+                            <li>הסרת סימני זכויות יוצרים או סימנים מסחריים</li>
+                            <li>שימוש ברובוטים, עכבישים או כלים אוטומטיים לסריקת האתר</li>
+                        </ul>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-handshake"></i> רישיונות ושיתופי פעולה</h2>
+                        <p>כל שימוש מסחרי, שיתוף או הפצה של תוכן האתר מחייב הסכם רישיון מפורש בכתב עם מ.פ פרוייקטים.</p>
+                        <p>לקבלת רישיון שימוש, יש לפנות ל: <strong>info@mp-projects.co.il</strong></p>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-balance-scale"></i> הוראות משפטיות</h2>
+                        <p><strong>חוק ישראלי:</strong> הצהרה זו כפופה לחוקי מדינת ישראל ולבתי המשפט בישראל.</p>
+                        <p><strong>אחריות מוגבלת:</strong> המידע באתר מסופק "כפי שהוא" ללא אחריות. החברה אינה אחראית לנזקים ישירים או עקיפים.</p>
+                        <p><strong>שינויים:</strong> אנו שומרים לעצמנו את הזכות לעדכן הצהרה זו מעת לעת. השינויים ייכנסו לתוקף מייד עם פרסומם.</p>
+                    </div>
+
+                    <div class="copyright-section">
+                        <h2><i class="fas fa-envelope"></i> יצירת קשר</h2>
+                        <p>לשאלות, הבהרות או תלונות בנושא זכויות יוצרים, אנא צרו איתנו קשר:</p>
+                        <div class="contact-info">
+                            <p><strong>חברה:</strong> מ.פ פרוייקטים</p>
+                            <p><strong>טלפון:</strong> 050-123-4567</p>
+                            <p><strong>אימייל:</strong> info@mp-projects.co.il</p>
+                            <p><strong>כתובת:</strong> רחוב הבנייה 123, תל אביב</p>
+                        </div>
+                    </div>
+
+                    <div class="copyright-footer">
+                        <p><strong>© 2024 מ.פ פרוייקטים. כל הזכויות שמורות.</strong></p>
+                        <p>תאריך עדכון אחרון: <span id="last-update"></span></p>
+                        <p>מסמך זה מהווה חלק בלתי נפרד מתנאי השימוש באתר.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>קבלן מקצועי</h3>
+                    <p>מתמחה בפרויקטים איכותיים של בנייה, שיפוץ ועיצוב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים מהירים</h4>
+                    <ul>
+                        <li><a href="#home" data-page="home">בית</a></li>
+                        <li><a href="#about" data-page="about">אודות</a></li>
+                        <li><a href="#services" data-page="services">שירותים</a></li>
+                        <li><a href="#projects" data-page="projects">פרויקטים</a></li>
+                        <li><a href="#quote" data-page="quote">הצעת מחיר</a></li>
+                        <li><a href="#copyright" data-page="copyright">זכויות יוצרים</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>צור קשר</h4>
+                    <p>050-123-4567</p>
+                    <p>info@contractor.co.il</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 קבלן מקצועי. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/quote.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

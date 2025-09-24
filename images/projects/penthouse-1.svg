@@ -1,0 +1,58 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="penthouseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0F8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6F3FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky with gradient -->
+  <rect width="400" height="200" fill="#87CEEB"/>
+  
+  <!-- Sea -->
+  <rect x="0" y="200" width="400" height="100" fill="#4169E1"/>
+  
+  <!-- Building -->
+  <rect x="50" y="80" width="300" height="120" fill="url(#penthouseGrad)" stroke="#696969" stroke-width="2"/>
+  
+  <!-- Penthouse level -->
+  <rect x="80" y="50" width="240" height="30" fill="#F5F5DC" stroke="#696969" stroke-width="2"/>
+  
+  <!-- Windows -->
+  <rect x="100" y="100" width="25" height="35" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="140" y="100" width="25" height="35" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="180" y="100" width="25" height="35" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="220" y="100" width="25" height="35" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="260" y="100" width="25" height="35" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="300" y="100" width="25" height="35" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  
+  <!-- Penthouse windows -->
+  <rect x="100" y="60" width="30" height="15" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="150" y="60" width="30" height="15" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="200" y="60" width="30" height="15" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  <rect x="250" y="60" width="30" height="15" fill="#87CEEB" stroke="#696969" stroke-width="1"/>
+  
+  <!-- Balcony -->
+  <rect x="80" y="200" width="240" height="15" fill="#8B4513"/>
+  <rect x="80" y="200" width="240" height="5" fill="#654321"/>
+  
+  <!-- Balcony railings -->
+  <line x1="90" y1="200" x2="90" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="120" y1="200" x2="120" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="150" y1="200" x2="150" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="180" y1="200" x2="180" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="210" y1="200" x2="210" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="240" y1="200" x2="240" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="270" y1="200" x2="270" y2="190" stroke="#696969" stroke-width="2"/>
+  <line x1="300" y1="200" x2="300" y2="190" stroke="#696969" stroke-width="2"/>
+  
+  <!-- Sun -->
+  <circle cx="350" cy="50" r="25" fill="#FFD700"/>
+  
+  <!-- Sea waves -->
+  <path d="M0,220 Q50,210 100,220 T200,220 T300,220 T400,220" stroke="#87CEEB" stroke-width="3" fill="none"/>
+  <path d="M0,230 Q50,220 100,230 T200,230 T300,230 T400,230" stroke="#87CEEB" stroke-width="3" fill="none"/>
+  
+  <!-- Text -->
+  <text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="12" fill="#2F4F4F">נטהאוז עם נוף לים</text>
+</svg>
