@@ -1,35 +1,10 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// import path from 'path'
+import path from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // עבור GitHub Pages
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom']
-        }
-      }
-    }
-  },
-  server: {
-    port: 3000,
-    host: true,
-    open: true,
-    hmr: true
-  },
-  preview: {
-    port: 4173,
-    host: true
-  },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -50,10 +25,10 @@ export default defineConfig({
       ],
       thresholds: {
         global: {
-          branches: 70,
-          functions: 70,
-          lines: 70,
-          statements: 70
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80
         }
       }
     },
@@ -63,13 +38,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': './src',
-      '@components': './src/components',
-      '@hooks': './src/hooks',
-      '@utils': './src/utils',
-      '@constants': './src/constants',
-      '@types': './src/types',
-      '@styles': './src/styles'
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@constants': path.resolve(__dirname, './src/constants'),
+      '@types': path.resolve(__dirname, './src/types'),
+      '@styles': path.resolve(__dirname, './src/styles')
     }
   }
 })

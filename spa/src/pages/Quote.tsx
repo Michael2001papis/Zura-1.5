@@ -1,250 +1,296 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import type { QuoteRow, QuoteTotals, QuoteData } from '../types/index.js'
+import { useQuote, useLoading, useError } from '../context/AppContext'
+import { ProtectedRoute } from '../components/Auth/ProtectedRoute'
+import { QuoteHeader } from '../components/Quote/QuoteHeader'
+import { QuoteControls } from '../components/Quote/QuoteControls'
+import { QuoteTable } from '../components/Quote/QuoteTable'
+import { QuoteSummary } from '../components/Quote/QuoteSummary'
+import { QuoteActions } from '../components/Quote/QuoteActions'
+import { QUOTE_CONFIG, ERROR_MESSAGES } from '../constants'
+import { useMemoizedCalculation } from '../hooks/usePerformance'
+import { FadeIn, SlideIn, Stagger } from '../components/Animations/FadeIn'
 
 const Quote: React.FC = () => {
-  const [rows, setRows] = useState([{ id: 1, quantity: 0, percent: 100, price: 0 }])
-  const [totals, setTotals] = useState({ withoutVAT: 0, vat: 0, withVAT: 0 })
+  const { quoteData, setQuoteData, updateQuoteRow, addQuoteRow, removeQuoteRow, clearQuoteData } = useQuote()
+  const { loading, setLoading } = useLoading()
+  const { error, setError, clearError } = useError()
+  
+  const [rows, setRows] = useState<QuoteRow[]>([
+    { 
+      id: 1, 
+      location: QUOTE_CONFIG.defaultLocation,
+      workType: QUOTE_CONFIG.defaultWorkType,
+      quantity: QUOTE_CONFIG.defaultQuantity, 
+      percent: QUOTE_CONFIG.defaultPercent, 
+      price: QUOTE_CONFIG.defaultPrice,
+      withoutVAT: 0,
+      vat: 0,
+      withVAT: 0,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ])
+  
+  const [totals, setTotals] = useState<QuoteTotals>({ withoutVAT: 0, vat: 0, withVAT: 0 })
+  const [isProcessing, setIsProcessing] = useState(false)
 
-  const addRow = () => {
-    setRows([...rows, { id: Date.now(), quantity: 0, percent: 100, price: 0 }])
-  }
+  // Load data from context on mount
+  useEffect(() => {
+    if (quoteData) {
+      setRows(quoteData.rows)
+      setTotals(quoteData.totals)
+    }
+  }, [quoteData])
 
-  const updateRow = (id: number, field: string, value: number) => {
-    const newRows = rows.map(row => 
-      row.id === id ? { ...row, [field]: value } : row
-    )
-    setRows(newRows)
-    calculateTotals(newRows)
-  }
+  // Memoized calculation for better performance
+  const calculateTotals = useMemoizedCalculation(
+    rows,
+    (rowsData: QuoteRow[]): QuoteTotals => {
+      let withoutVAT = 0
+      rowsData.forEach(row => {
+        const total = row.quantity * (row.percent / 100) * row.price
+        withoutVAT += total
+      })
+      const vat = withoutVAT * QUOTE_CONFIG.vatRate
+      const withVAT = withoutVAT + vat
+      
+      return { withoutVAT, vat, withVAT }
+    }
+  )
 
-  const calculateTotals = (rowsData: any[]) => {
-    let withoutVAT = 0
-    rowsData.forEach(row => {
-      const total = row.quantity * (row.percent / 100) * row.price
-      withoutVAT += total
-    })
-    const vat = withoutVAT * 0.18
-    const withVAT = withoutVAT + vat
+  // Update totals when rows change
+  useEffect(() => {
+    setTotals(calculateTotals)
     
-    setTotals({ withoutVAT, vat, withVAT })
+    // Update context
+    if (rows.length > 0) {
+      const quoteData: QuoteData = {
+        rows,
+        totals: calculateTotals,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      setQuoteData(quoteData)
+    }
+  }, [rows, calculateTotals, setQuoteData])
+
+  const addRow = useCallback(() => {
+    setLoading({ isLoading: true, loadingMessage: 'מוסיף שורה חדשה...' })
+    
+    try {
+      const newRow: QuoteRow = {
+        id: Date.now(),
+        location: QUOTE_CONFIG.defaultLocation,
+        workType: QUOTE_CONFIG.defaultWorkType,
+        quantity: QUOTE_CONFIG.defaultQuantity,
+        percent: QUOTE_CONFIG.defaultPercent,
+        price: QUOTE_CONFIG.defaultPrice,
+        withoutVAT: 0,
+        vat: 0,
+        withVAT: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      
+      setRows(prev => [...prev, newRow])
+      addQuoteRow(newRow)
+    } catch {
+      setError({
+        code: 'ADD_ROW_ERROR',
+        message: ERROR_MESSAGES.GENERIC,
+        timestamp: new Date()
+      })
+    } finally {
+      setLoading({ isLoading: false })
+    }
+  }, [setLoading, addQuoteRow, setError])
+
+  const updateRow = useCallback((id: string | number, field: keyof QuoteRow, value: unknown) => {
+    try {
+      setRows(prev => prev.map(row => 
+        row.id === id ? { ...row, [field]: value, updatedAt: new Date() } : row
+      ))
+      updateQuoteRow(id, { [field]: value })
+    } catch {
+      setError({
+        code: 'UPDATE_ROW_ERROR',
+        message: ERROR_MESSAGES.GENERIC,
+        timestamp: new Date()
+      })
+    }
+  }, [updateQuoteRow, setError])
+
+  const removeRow = useCallback((id: string | number) => {
+    if (rows.length <= QUOTE_CONFIG.minRows) return
+    
+    try {
+      setRows(prev => prev.filter(row => row.id !== id))
+      removeQuoteRow(id)
+    } catch {
+      setError({
+        code: 'REMOVE_ROW_ERROR',
+        message: ERROR_MESSAGES.GENERIC,
+        timestamp: new Date()
+      })
+    }
+  }, [rows.length, removeQuoteRow, setError])
+
+  const duplicateRow = useCallback(() => {
+    if (rows.length === 0) return
+    
+    const lastRow = rows[rows.length - 1]
+    const newRow: QuoteRow = {
+      ...lastRow,
+      id: Date.now(),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+    
+    setRows(prev => [...prev, newRow])
+    addQuoteRow(newRow)
+  }, [rows, addQuoteRow])
+
+  const handlePrint = useCallback(() => {
+    setIsProcessing(true)
+    try {
+      window.print()
+    } catch {
+      setError({
+        code: 'PRINT_ERROR',
+        message: ERROR_MESSAGES.GENERIC,
+        timestamp: new Date()
+      })
+    } finally {
+      setIsProcessing(false)
+    }
+  }, [setError])
+
+  const handleEmail = useCallback(() => {
+    setIsProcessing(true)
+    try {
+      // TODO: Implement email functionality
+      alert('שליחת הצעה באימייל...')
+    } catch {
+      setError({
+        code: 'EMAIL_ERROR',
+        message: ERROR_MESSAGES.GENERIC,
+        timestamp: new Date()
+      })
+    } finally {
+      setIsProcessing(false)
+    }
+  }, [setError])
+
+  const handleSave = useCallback(() => {
+    setIsProcessing(true)
+    try {
+      // Data is already saved via context
+      alert('הצעת המחיר נשמרה בהצלחה!')
+    } catch {
+      setError({
+        code: 'SAVE_ERROR',
+        message: ERROR_MESSAGES.STORAGE_ERROR,
+        timestamp: new Date()
+      })
+    } finally {
+      setIsProcessing(false)
+    }
+  }, [setError])
+
+  const handleReset = useCallback(() => {
+    try {
+      setRows([{
+        id: 1,
+        location: QUOTE_CONFIG.defaultLocation,
+        workType: QUOTE_CONFIG.defaultWorkType,
+        quantity: QUOTE_CONFIG.defaultQuantity,
+        percent: QUOTE_CONFIG.defaultPercent,
+        price: QUOTE_CONFIG.defaultPrice,
+        withoutVAT: 0,
+        vat: 0,
+        withVAT: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }])
+      clearQuoteData()
+    } catch {
+      setError({
+        code: 'RESET_ERROR',
+        message: ERROR_MESSAGES.GENERIC,
+        timestamp: new Date()
+      })
+    }
+  }, [clearQuoteData, setError])
+
+  const headerData = {
+    title: '💰 יצירת הצעת מחיר מקצועית',
+    subtitle: 'מלא את הפרטים הבאים כדי ליצור הצעת מחיר מקצועית ומדויקת',
+    badges: [
+      { text: 'מהיר', icon: '⚡' },
+      { text: 'מדויק', icon: '🎯' },
+      { text: 'מקצועי', icon: '💼' }
+    ]
   }
+
+  const quoteContent = (
+    <FadeIn direction="fade" duration={600}>
+      <div className="container">
+        {error && (
+          <SlideIn direction="down" duration={400}>
+            <div className="error-message">
+              <p>🚨 {error.message}</p>
+              <button onClick={clearError} className="btn secondary-btn">סגור</button>
+            </div>
+          </SlideIn>
+        )}
+        
+        <Stagger delay={100} staggerDelay={150}>
+          <QuoteHeader {...headerData} />
+          
+          <QuoteControls
+            onAddRow={addRow}
+            onDuplicateRow={duplicateRow}
+            rowCount={rows.length}
+            isAdding={loading.isLoading}
+          />
+          
+          <QuoteTable
+            rows={rows}
+            onUpdateRow={updateRow}
+            onRemoveRow={removeRow}
+            isLoading={loading.isLoading}
+          />
+          
+          <QuoteSummary
+            totals={totals}
+            isLoading={loading.isLoading}
+          />
+          
+          <QuoteActions
+            onPrint={handlePrint}
+            onEmail={handleEmail}
+            onSave={handleSave}
+            onReset={handleReset}
+            isProcessing={isProcessing}
+          />
+        </Stagger>
+      </div>
+    </FadeIn>
+  )
 
   return (
-    <div className="container">
-      <div className="quote-header">
-        <h1>💰 יצירת הצעת מחיר מקצועית</h1>
-        <p>מלא את הפרטים הבאים כדי ליצור הצעת מחיר מקצועית ומדויקת</p>
-        <div className="quote-badges">
-          <span className="badge">⚡ מהיר</span>
-          <span className="badge">🎯 מדויק</span>
-          <span className="badge">💼 מקצועי</span>
+    <ProtectedRoute fallback={
+      <div className="container">
+        <div className="access-denied">
+          <h1>🚫 גישה מוגבלת</h1>
+          <p>עמוד זה זמין רק למשתמשים מורשים</p>
+          <p>אנא התחבר למערכת כדי לגשת לעמוד הצעת המחיר</p>
         </div>
       </div>
-      
-      <div className="quote-controls">
-        <div className="controls-left">
-          <button className="btn add-btn" onClick={addRow}>
-            <span className="btn-icon">➕</span>
-            <span>הוסף שורה חדשה</span>
-          </button>
-          <button className="btn duplicate-btn" onClick={() => {
-            const lastRow = rows[rows.length - 1]
-            addRow()
-            setTimeout(() => {
-              updateRow(rows[rows.length - 1].id, 'quantity', lastRow.quantity)
-              updateRow(rows[rows.length - 1].id, 'percent', lastRow.percent)
-              updateRow(rows[rows.length - 1].id, 'price', lastRow.price)
-            }, 100)
-          }}>
-            <span className="btn-icon">📋</span>
-            <span>שכפל שורה</span>
-          </button>
-        </div>
-        <div className="controls-right">
-          <div className="row-count">
-            <span className="count-number">{rows.length}</span>
-            <span className="count-label">שורות</span>
-          </div>
-        </div>
-      </div>
-      
-      <div className="quote-table-section">
-        <div className="table-header">
-          <h3>📊 פרטי הפרויקט</h3>
-          <p>מלא את הפרטים עבור כל פריט בפרויקט</p>
-        </div>
-        
-        <div className="table-container">
-          <table className="calculation-table">
-            <thead>
-              <tr>
-                <th>🏠 מיקום</th>
-                <th>🔨 סוג עבודה</th>
-                <th>📊 כמות</th>
-                <th>📈 אחוז</th>
-                <th>💰 מחיר יחידה</th>
-                <th>💵 ללא מע״מ</th>
-                <th>🧾 מע״מ</th>
-                <th>💸 כולל מע״מ</th>
-                <th>🗑️ פעולות</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, index) => {
-                const rowTotal = row.quantity * (row.percent / 100) * row.price
-                const rowVAT = rowTotal * 0.18
-                const rowWithVAT = rowTotal + rowVAT
-                
-                return (
-                  <tr key={row.id} className="data-row">
-                    <td>
-                      <select className="form-select" defaultValue="דירה">
-                        <option value="דירה">🏠 דירה</option>
-                        <option value="בית">🏡 בית פרטי</option>
-                        <option value="משרד">🏢 משרד</option>
-                        <option value="חנות">🏪 חנות</option>
-                        <option value="מחסן">🏭 מחסן</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select className="form-select" defaultValue="הריסה">
-                        <option value="הריסה">🔨 הריסה</option>
-                        <option value="בניה">🏗️ בניה</option>
-                        <option value="צבע">🎨 צבע</option>
-                        <option value="ריצוף">🔲 ריצוף</option>
-                        <option value="אינסטלציה">🚿 אינסטלציה</option>
-                        <option value="חשמל">⚡ חשמל</option>
-                        <option value="גבס">🧱 גבס</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input 
-                        type="number" 
-                        className="form-input"
-                        placeholder="0"
-                        min="0"
-                        step="0.1"
-                        value={row.quantity}
-                        onChange={(e) => updateRow(row.id, 'quantity', parseFloat(e.target.value) || 0)}
-                      />
-                    </td>
-                    <td>
-                      <select 
-                        className="form-select"
-                        value={row.percent}
-                        onChange={(e) => updateRow(row.id, 'percent', parseFloat(e.target.value))}
-                      >
-                        <option value="100">100%</option>
-                        <option value="90">90%</option>
-                        <option value="80">80%</option>
-                        <option value="70">70%</option>
-                        <option value="60">60%</option>
-                        <option value="50">50%</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input 
-                        type="number" 
-                        className="form-input"
-                        placeholder="0.00"
-                        min="0"
-                        step="0.01"
-                        value={row.price}
-                        onChange={(e) => updateRow(row.id, 'price', parseFloat(e.target.value) || 0)}
-                      />
-                    </td>
-                    <td className="result-cell">
-                      <span className="amount">{rowTotal.toFixed(2)} ₪</span>
-                    </td>
-                    <td className="result-cell">
-                      <span className="amount">{rowVAT.toFixed(2)} ₪</span>
-                    </td>
-                    <td className="result-cell total-cell">
-                      <span className="amount total-amount">{rowWithVAT.toFixed(2)} ₪</span>
-                    </td>
-                    <td className="actions-cell">
-                      <button 
-                        className="btn delete-btn"
-                        onClick={() => {
-                          if (rows.length > 1) {
-                            setRows(rows.filter(r => r.id !== row.id))
-                            calculateTotals(rows.filter(r => r.id !== row.id))
-                          }
-                        }}
-                        disabled={rows.length === 1}
-                        title="מחק שורה"
-                      >
-                        🗑️
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      
-      <div className="summary-section">
-        <div className="summary-header">
-          <h3>📋 סיכום הצעת המחיר</h3>
-          <p>סיכום מפורט של כל העלויות</p>
-        </div>
-        
-        <div className="summary-cards">
-          <div className="summary-card">
-            <div className="card-icon">💵</div>
-            <div className="card-content">
-              <h4>ללא מע״מ</h4>
-              <span className="amount">{totals.withoutVAT.toFixed(2)} ₪</span>
-            </div>
-          </div>
-          
-          <div className="summary-card">
-            <div className="card-icon">🧾</div>
-            <div className="card-content">
-              <h4>מע״מ (18%)</h4>
-              <span className="amount">{totals.vat.toFixed(2)} ₪</span>
-            </div>
-          </div>
-          
-          <div className="summary-card total-card">
-            <div className="card-icon">💎</div>
-            <div className="card-content">
-              <h4>סה״כ כולל מע״מ</h4>
-              <span className="amount total-amount">{totals.withVAT.toFixed(2)} ₪</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="quote-actions">
-        <div className="action-buttons">
-          <button className="btn print-btn" onClick={() => window.print()}>
-            <span className="btn-icon">🖨️</span>
-            <span>הדפס הצעה</span>
-          </button>
-          <button className="btn email-btn" onClick={() => alert('שליחת הצעה באימייל...')}>
-            <span className="btn-icon">📧</span>
-            <span>שלח באימייל</span>
-          </button>
-          <button className="btn save-btn" onClick={() => alert('הצעת המחיר נשמרה בהצלחה!')}>
-            <span className="btn-icon">💾</span>
-            <span>שמור הצעה</span>
-          </button>
-        </div>
-        
-        <div className="reset-section">
-          <button className="btn reset-btn" onClick={() => {
-            if (confirm('האם אתה בטוח שברצונך לאפס את כל הנתונים?')) {
-              window.location.reload()
-            }
-          }}>
-            <span className="btn-icon">🔄</span>
-            <span>איפוס מלא</span>
-          </button>
-        </div>
-      </div>
-    </div>
+    }>
+      {quoteContent}
+    </ProtectedRoute>
   )
 }
 
