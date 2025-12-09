@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קבלן מקצועי - פרויקטים איכותיים</title>
-    <meta name="description" content="קבלן מקצועי המתמחה בפרויקטים איכותיים. שירותי בנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר.">
-    <meta name="keywords" content="קבלן, בנייה, שיפוץ, עיצוב, פרויקטים">
+    <title>קבלן מקצועי - פרויקטים איכותיים | מ.פ פרוייקטים</title>
+    <meta name="description" content="קבלן מקצועי המתמחה בפרויקטים איכותיים. שירותי בנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר. מעל 15 שנות ניסיון בתחום הבנייה.">
+    <meta name="keywords" content="קבלן, בנייה, שיפוץ, עיצוב, פרויקטים, קבלן מקצועי, שיפוץ דירות, בנייה חדשה, עיצוב פנים">
+    <meta name="author" content="מ.פ פרוייקטים">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Hebrew">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mp-projects.co.il/">
+    <meta property="og:title" content="קבלן מקצועי - פרויקטים איכותיים | מ.פ פרוייקטים">
+    <meta property="og:description" content="קבלן מקצועי המתמחה בפרויקטים איכותיים. שירותי בנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר. מעל 15 שנות ניסיון בתחום הבנייה.">
+            <meta property="og:image" content="https://mp-projects.co.il/Datas/assets/images/hero-construction.svg">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:site_name" content="מ.פ פרוייקטים">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://mp-projects.co.il/">
+    <meta name="twitter:title" content="קבלן מקצועי - פרויקטים איכותיים | מ.פ פרוייקטים">
+    <meta name="twitter:description" content="קבלן מקצועי המתמחה בפרויקטים איכותיים. שירותי בנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר.">
+            <meta name="twitter:image" content="https://mp-projects.co.il/Datas/assets/images/hero-construction.svg">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="Datas/meta/manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="Datas/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="Datas/assets/icons/icon-512.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="Datas/assets/icons/icon-192.png">
     
     <!-- CSS Files -->
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="Datas/styles/reset.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,53 +48,52 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Datas/styles/main.css">
+    <link rel="stylesheet" href="Datas/styles/responsive.css">
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link" aria-label="דלג לתוכן הראשי">דלג לתוכן הראשי</a>
+    
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" role="navigation" aria-label="ניווט ראשי">
         <div class="nav-container">
             <div class="nav-logo">
                 <h2>קבלן מקצועי</h2>
             </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link active" data-page="home">בית</a>
+            <ul class="nav-menu" id="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="#home" class="nav-link active" data-page="home" role="menuitem" aria-label="עמוד בית">בית</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link" data-page="about">אודות</a>
+                <li class="nav-item" role="none">
+                    <a href="#about" class="nav-link" data-page="about" role="menuitem" aria-label="עמוד אודות">אודות</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#services" class="nav-link" data-page="services">שירותים</a>
+                <li class="nav-item" role="none">
+                    <a href="#services" class="nav-link" data-page="services" role="menuitem" aria-label="עמוד שירותים">שירותים</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link" data-page="projects">פרויקטים</a>
+                <li class="nav-item" role="none">
+                    <a href="#projects" class="nav-link" data-page="projects" role="menuitem" aria-label="עמוד פרויקטים">פרויקטים</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link" data-page="contact">צור קשר</a>
+                <li class="nav-item" role="none">
+                    <a href="#contact" class="nav-link" data-page="contact" role="menuitem" aria-label="צור קשר">צור קשר</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#quote" class="nav-link" data-page="quote">הצעת מחיר</a>
+                <li class="nav-item" role="none">
+                    <a href="#quote" class="nav-link" data-page="quote" role="menuitem" aria-label="הצעת מחיר">הצעת מחיר</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#copyright" class="nav-link" data-page="copyright">זכויות יוצרים</a>
+                <li class="nav-item" role="none">
+                    <a href="#copyright" class="nav-link" data-page="copyright" role="menuitem" aria-label="זכויות יוצרים">זכויות יוצרים</a>
                 </li>
             </ul>
             <!-- Search Button -->
-            <button class="search-toggle" id="search-toggle">
-                <i class="fas fa-search"></i>
+            <button class="search-toggle" id="search-toggle" aria-label="פתח חיפוש" aria-expanded="false">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </button>
             
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="פתח תפריט" aria-expanded="false">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
@@ -71,16 +101,16 @@
     <div class="search-overlay" id="search-overlay">
         <div class="search-container">
             <div class="search-header">
-                <h3><i class="fas fa-search"></i> חיפוש באתר</h3>
-                <button class="search-close" id="search-close">
-                    <i class="fas fa-times"></i>
+                <h3><i class="fas fa-search" aria-hidden="true"></i> חיפוש באתר</h3>
+                <button class="search-close" id="search-close" aria-label="סגור חיפוש">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             
             <div class="search-input-container">
-                <input type="text" id="search-input" placeholder="חפש פרויקטים, שירותים, מידע..." autocomplete="off">
-                <button class="search-btn" id="search-btn">
-                    <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="חפש פרויקטים, שירותים, מידע..." autocomplete="off" aria-label="שדה חיפוש">
+                <button class="search-btn" id="search-btn" aria-label="בצע חיפוש">
+                    <i class="fas fa-search" aria-hidden="true"></i>
                 </button>
             </div>
             
@@ -119,7 +149,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="images/hero-construction.svg" alt="פרויקט בנייה מקצועי" loading="lazy">
+                    <img src="Datas/assets/images/hero-construction.svg" alt="פרויקט בנייה מקצועי" loading="lazy">
                 </div>
             </div>
             
@@ -182,7 +212,7 @@
                         </ul>
                     </div>
                     <div class="about-image">
-                        <img src="images/about-team.svg" alt="צוות הקבלן המקצועי" loading="lazy">
+                        <img src="Datas/assets/images/about-team.svg" alt="צוות הקבלן המקצועי" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -699,12 +729,138 @@
         </div>
     </footer>
 
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "מ.פ פרוייקטים",
+      "alternateName": "קבלן מקצועי",
+      "description": "קבלן מקצועי המתמחה בפרויקטים איכותיים של בנייה, שיפוץ ועיצוב. מעל 15 שנות ניסיון בתחום הבנייה.",
+      "url": "https://mp-projects.co.il",
+      "logo": "https://mp-projects.co.il/Datas/assets/images/hero-construction.svg",
+      "image": "https://mp-projects.co.il/Datas/assets/images/hero-construction.svg",
+      "telephone": "050-123-4567",
+      "email": "info@mp-projects.co.il",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "רחוב הבנייה 123",
+        "addressLocality": "תל אביב",
+        "addressCountry": "IL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "32.0853",
+        "longitude": "34.7818"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "08:00",
+          "closes": "14:00"
+        }
+      ],
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "Country",
+        "name": "ישראל"
+      },
+      "sameAs": []
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "מ.פ פרוייקטים - קבלן מקצועי",
+      "alternateName": "קבלן מקצועי",
+      "url": "https://mp-projects.co.il",
+      "description": "אתר קבלן מקצועי המתמחה בפרויקטים איכותיים של בנייה, שיפוץ ועיצוב",
+      "inLanguage": "he-IL",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://mp-projects.co.il/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "LocalBusiness",
+        "name": "מ.פ פרוייקטים"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "שירותי בנייה ושיפוץ",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "מ.פ פרוייקטים"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "ישראל"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "שירותי קבלן מקצועי",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "בנייה חדשה",
+              "description": "בניית בתים פרטיים, דירות ופרויקטים מסחריים מהתחלה ועד הסוף"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "שיפוץ דירות",
+              "description": "שיפוץ מלא או חלקי של דירות, בתים ומשרדים"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "עיצוב פנים",
+              "description": "שירותי עיצוב פנים מותאמים אישית לכל לקוח"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "תחזוקה ושיפורים",
+              "description": "שירותי תחזוקה שוטפת ושיפורים קטנים"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
     <!-- JavaScript Files -->
-    <script src="js/main.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/projects.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/quote.js"></script>
-    <script src="js/search.js"></script>
+    <script src="Datas/js/utils/utils.js"></script>
+    <script src="Datas/js/main.js"></script>
+    <script src="Datas/js/components/navigation.js"></script>
+    <script src="Datas/js/components/projects.js"></script>
+    <script src="Datas/js/components/contact.js"></script>
+    <script src="Datas/js/components/quote.js"></script>
+    <script src="Datas/js/components/search.js"></script>
 </body>
 </html>

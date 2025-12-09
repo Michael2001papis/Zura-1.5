@@ -1,0 +1,13 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#6366f1"/>
+  <rect x="50" y="200" width="412" height="262" fill="#ffffff" rx="10"/>
+  <rect x="100" y="250" width="80" height="120" fill="#6366f1" rx="5"/>
+  <rect x="200" y="250" width="80" height="120" fill="#6366f1" rx="5"/>
+  <rect x="300" y="250" width="80" height="120" fill="#6366f1" rx="5"/>
+  <polygon points="50,200 256,100 462,200" fill="#8B4513"/>
+  <circle cx="150" cy="310" r="8" fill="#ffffff"/>
+  <circle cx="250" cy="310" r="8" fill="#ffffff"/>
+  <circle cx="350" cy="310" r="8" fill="#ffffff"/>
+  <text x="256" y="420" font-family="Arial, sans-serif" font-size="40" font-weight="bold" text-anchor="middle" fill="#6366f1">קבלן</text>
+</svg>
+

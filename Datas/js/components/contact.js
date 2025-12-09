@@ -1,6 +1,10 @@
+// ניהול טופס יצירת קשר
 // Contact form functionality
 
-// Contact manager class
+/**
+ * מחלקה לניהול טופס יצירת קשר
+ * Contact manager class
+ */
 class ContactManager {
     constructor() {
         this.form = null;
@@ -8,7 +12,12 @@ class ContactManager {
         this.init();
     }
 
+    /**
+     * אתחול המחלקה
+     * Initialize the class
+     */
     init() {
+        // המתן עד שהדום מוכן
         // Wait for DOM to be ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.initializeForm());
@@ -17,6 +26,10 @@ class ContactManager {
         }
     }
 
+    /**
+     * אתחול הטופס
+     * Initialize the contact form
+     */
     initializeForm() {
         this.form = document.getElementById('contact-form');
         if (!this.form) return;
@@ -29,16 +42,25 @@ class ContactManager {
         console.log('Contact form initialized successfully');
     }
 
+    /**
+     * הגדרת אימות הטופס
+     * Setup form validation
+     */
     setupFormValidation() {
         const inputs = this.form.querySelectorAll('input, textarea, select');
         
         inputs.forEach(input => {
+            // אימות בזמן אמת
             // Real-time validation
             input.addEventListener('blur', () => this.validateField(input));
             input.addEventListener('input', () => this.clearFieldError(input));
         });
     }
 
+    /**
+     * הגדרת שליחת הטופס
+     * Setup form submission
+     */
     setupFormSubmission() {
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -46,15 +68,21 @@ class ContactManager {
         });
     }
 
+    /**
+     * שיפורי טופס (פורמט טלפון, שינוי גודל textarea וכו')
+     * Setup form enhancements
+     */
     setupFormEnhancements() {
+        // פורמט מספר טלפון
         // Phone number formatting
         const phoneInput = this.form.querySelector('#phone');
         if (phoneInput) {
             phoneInput.addEventListener('input', (e) => {
-                this.formatPhoneNumber(e.target);
+                Utils.formatPhoneNumber(e.target);
             });
         }
 
+        // שינוי גודל textarea אוטומטי
         // Auto-resize textarea
         const messageTextarea = this.form.querySelector('#message');
         if (messageTextarea) {
@@ -63,6 +91,7 @@ class ContactManager {
             });
         }
 
+        // אפקטי פוקוס על שדות הטופס
         // Form field focus effects
         const formGroups = this.form.querySelectorAll('.form-group');
         formGroups.forEach(group => {
@@ -81,9 +110,13 @@ class ContactManager {
         });
     }
 
+    /**
+     * טיפול בשליחת הטופס
+     * Handle form submission
+     */
     handleFormSubmission() {
         if (!this.validateForm()) {
-            this.showFormError('אנא תקן את השגיאות בטופס');
+            Utils.showToast('אנא תקן את השגיאות בטופס', 'error');
             return;
         }
 
@@ -104,34 +137,44 @@ class ContactManager {
         return isValid;
     }
 
+    /**
+     * אימות שדה בודד
+     * Validate a single form field
+     * @param {HTMLElement} field - שדה לאימות
+     * @returns {boolean} true אם תקין
+     */
     validateField(field) {
         const value = field.value.trim();
         const fieldName = field.name;
         let isValid = true;
         let errorMessage = '';
 
+        // בדיקת שדה חובה
         // Required field validation
         if (field.hasAttribute('required') && !value) {
             isValid = false;
             errorMessage = 'שדה זה נדרש';
         }
 
+        // אימות אימייל
         // Email validation
         if (fieldName === 'email' && value) {
-            if (!this.isValidEmail(value)) {
+            if (!Utils.validateEmail(value)) {
                 isValid = false;
                 errorMessage = 'כתובת אימייל לא תקינה';
             }
         }
 
+        // אימות טלפון
         // Phone validation
         if (fieldName === 'phone' && value) {
-            if (!this.isValidPhone(value)) {
+            if (!Utils.validatePhone(value)) {
                 isValid = false;
                 errorMessage = 'מספר טלפון לא תקין';
             }
         }
 
+        // אימות שם
         // Name validation
         if (fieldName === 'name' && value) {
             if (value.length < 2) {
@@ -140,6 +183,7 @@ class ContactManager {
             }
         }
 
+        // אימות הודעה
         // Message validation
         if (fieldName === 'message' && value) {
             if (value.length < 10) {
@@ -152,6 +196,13 @@ class ContactManager {
         return isValid;
     }
 
+    /**
+     * הצגת שגיאת אימות על שדה
+     * Show validation error on field
+     * @param {HTMLElement} field - שדה להצגת שגיאה
+     * @param {boolean} isValid - האם השדה תקין
+     * @param {string} errorMessage - הודעת השגיאה
+     */
     showFieldError(field, isValid, errorMessage) {
         const formGroup = field.closest('.form-group');
         const existingError = formGroup.querySelector('.field-error');
@@ -171,6 +222,11 @@ class ContactManager {
         }
     }
 
+    /**
+     * ניקוי שגיאת אימות משדה
+     * Clear validation error from field
+     * @param {HTMLElement} field - שדה לניקוי שגיאה
+     */
     clearFieldError(field) {
         field.classList.remove('error');
         const formGroup = field.closest('.form-group');
@@ -180,22 +236,29 @@ class ContactManager {
         }
     }
 
+    /**
+     * הצגת הודעת שגיאה
+     * Show error message
+     * @param {string} message - הודעת שגיאה
+     */
     showFormError(message) {
-        if (window.ContractorApp && window.ContractorApp.showToast) {
-            window.ContractorApp.showToast(message, 'error');
-        } else {
-            alert(message);
-        }
+        Utils.showToast(message, 'error');
     }
 
+    /**
+     * הצגת הודעת הצלחה
+     * Show success message
+     * @param {string} message - הודעת הצלחה
+     */
     showFormSuccess(message) {
-        if (window.ContractorApp && window.ContractorApp.showToast) {
-            window.ContractorApp.showToast(message, 'success');
-        } else {
-            alert(message);
-        }
+        Utils.showToast(message, 'success');
     }
 
+    /**
+     * קבלת נתוני הטופס כאובייקט
+     * Get form data as object
+     * @returns {Object} נתוני הטופס
+     */
     getFormData() {
         const formData = new FormData(this.form);
         const data = {};
@@ -207,28 +270,38 @@ class ContactManager {
         return data;
     }
 
+    /**
+     * שליחת הטופס
+     * Submit the form
+     * @param {Object} formData - נתוני הטופס
+     */
     async submitForm(formData) {
         const submitButton = this.form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
         
+        // הצגת מצב טעינה
         // Show loading state
         submitButton.disabled = true;
         submitButton.textContent = 'שולח...';
         submitButton.classList.add('loading');
 
         try {
+            // סימולציה של שליחת טופס (יש להחליף לקריאת API אמיתית)
             // Simulate form submission (replace with actual API call)
             await this.simulateFormSubmission(formData);
             
+            // הצלחה
             // Success
             this.showFormSuccess('ההודעה נשלחה בהצלחה! נחזור אליכם בהקדם.');
             this.resetForm();
             
         } catch (error) {
+            // שגיאה
             // Error
             this.showFormError('שגיאה בשליחת ההודעה. אנא נסה שוב.');
             console.error('Form submission error:', error);
         } finally {
+            // איפוס מצב הכפתור
             // Reset button state
             submitButton.disabled = false;
             submitButton.textContent = originalText;
@@ -236,10 +309,18 @@ class ContactManager {
         }
     }
 
+    /**
+     * סימולציה של שליחת טופס (יש להחליף לקריאת API אמיתית)
+     * Simulate form submission (replace with actual API call)
+     * @param {Object} formData - נתוני הטופס
+     * @returns {Promise} Promise של שליחה
+     */
     async simulateFormSubmission(formData) {
+        // סימולציה של עיכוב קריאת API
         // Simulate API call delay
         return new Promise((resolve, reject) => {
             setTimeout(() => {
+                // סימולציה של הצלחה (90% הצלחה)
                 // Simulate success (90% success rate)
                 if (Math.random() > 0.1) {
                     resolve(formData);
@@ -250,9 +331,14 @@ class ContactManager {
         });
     }
 
+    /**
+     * איפוס הטופס
+     * Reset the form
+     */
     resetForm() {
         this.form.reset();
         
+        // ניקוי כל שגיאות השדות
         // Clear all field errors
         const errorFields = this.form.querySelectorAll('.error');
         errorFields.forEach(field => field.classList.remove('error'));
@@ -260,46 +346,28 @@ class ContactManager {
         const errorMessages = this.form.querySelectorAll('.field-error');
         errorMessages.forEach(error => error.remove());
         
+        // הסרת מצבי פוקוס
         // Remove focus states
         const formGroups = this.form.querySelectorAll('.form-group');
         formGroups.forEach(group => group.classList.remove('focused'));
     }
 
-    formatPhoneNumber(input) {
-        let value = input.value.replace(/\D/g, '');
-        
-        if (value.length > 0) {
-            if (value.length <= 3) {
-                value = value;
-            } else if (value.length <= 6) {
-                value = value.slice(0, 3) + '-' + value.slice(3);
-            } else if (value.length <= 9) {
-                value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
-            } else {
-                value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6, 9);
-            }
-        }
-        
-        input.value = value;
-    }
-
+    /**
+     * שינוי גודל textarea אוטומטי לפי התוכן
+     * Auto-resize textarea based on content
+     * @param {HTMLTextAreaElement} textarea - textarea לשינוי גודל
+     */
     autoResizeTextarea(textarea) {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
     }
 
-    isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    isValidPhone(phone) {
-        const phoneRegex = /^[\d\-\s\(\)]+$/;
-        const digitsOnly = phone.replace(/\D/g, '');
-        return phoneRegex.test(phone) && digitsOnly.length >= 10;
-    }
-
-    // Public method to validate specific field
+    /**
+     * אימות שדה לפי שם
+     * Validate field by name
+     * @param {string} fieldName - שם השדה
+     * @returns {boolean} true אם תקין
+     */
     validateFieldByName(fieldName) {
         const field = this.form.querySelector(`[name="${fieldName}"]`);
         if (field) {
@@ -308,13 +376,23 @@ class ContactManager {
         return false;
     }
 
-    // Public method to get field value
+    /**
+     * קבלת ערך שדה לפי שם
+     * Get field value by name
+     * @param {string} fieldName - שם השדה
+     * @returns {string} ערך השדה
+     */
     getFieldValue(fieldName) {
         const field = this.form.querySelector(`[name="${fieldName}"]`);
         return field ? field.value.trim() : '';
     }
 
-    // Public method to set field value
+    /**
+     * הגדרת ערך שדה לפי שם
+     * Set field value by name
+     * @param {string} fieldName - שם השדה
+     * @param {string} value - ערך להגדרה
+     */
     setFieldValue(fieldName, value) {
         const field = this.form.querySelector(`[name="${fieldName}"]`);
         if (field) {

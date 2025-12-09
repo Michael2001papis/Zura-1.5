@@ -7,7 +7,7 @@ const projectsData = [
         title: "בית פרטי מודרני",
         category: "residential",
         description: "בניית בית פרטי מודרני עם עיצוב נקי ומינימליסטי. הפרויקט כולל 4 חדרי שינה, סלון רחב ומטבח מודרני.",
-        image: "images/projects/house-1.svg",
+        image: "Datas/assets/images/projects/house-1.svg",
         features: ["4 חדרי שינה", "מטבח מודרני", "גינה פרטית", "מחסן"],
         year: "2024",
         area: "180 מ\"ר"
@@ -17,7 +17,7 @@ const projectsData = [
         title: "שיפוץ דירת פנטהאוז",
         category: "renovation",
         description: "שיפוץ מלא של דירת פנטהאוז עם נוף לים. הפרויקט כלל שיפוץ המטבח, חדרי הרחצה והסלון.",
-        image: "images/projects/penthouse-1.svg",
+        image: "Datas/assets/images/projects/penthouse-1.svg",
         features: ["שיפוץ מטבח", "2 חדרי רחצה", "מרפסת רחבה", "נוף לים"],
         year: "2024",
         area: "120 מ\"ר"
@@ -27,7 +27,7 @@ const projectsData = [
         title: "משרדים מסחריים",
         category: "commercial",
         description: "בניית בניין משרדים חדש עם 3 קומות. הפרויקט כולל חניון תת-קרקעי ומעליות.",
-        image: "images/projects/office-1.svg",
+        image: "Datas/assets/images/projects/office-1.svg",
         features: ["3 קומות", "חניון תת-קרקעי", "2 מעליות", "מערכת מיזוג מרכזית"],
         year: "2023",
         area: "800 מ\"ר"
@@ -37,7 +37,7 @@ const projectsData = [
         title: "בית קוטג' כפרי",
         category: "residential",
         description: "בניית בית קוטג' כפרי עם גינה גדולה. העיצוב משולב עם הטבע הסביבתי.",
-        image: "images/projects/cottage-1.svg",
+        image: "Datas/assets/images/projects/cottage-1.svg",
         features: ["3 חדרי שינה", "גינה גדולה", "מרפסת עץ", "אח"],
         year: "2023",
         area: "150 מ\"ר"
@@ -47,7 +47,7 @@ const projectsData = [
         title: "שיפוץ דירת סטודיו",
         category: "renovation",
         description: "שיפוץ מלא של דירת סטודיו עם עיצוב חכם המנצל כל סנטימטר. הפרויקט כלל שיפוץ מלא של החלל.",
-        image: "images/projects/studio-1.svg",
+        image: "Datas/assets/images/projects/studio-1.svg",
         features: ["עיצוב חכם", "מטבח מודרני", "חדר רחצה", "מחסן מובנה"],
         year: "2024",
         area: "45 מ\"ר"
@@ -57,7 +57,7 @@ const projectsData = [
         title: "מרכז קניות",
         category: "commercial",
         description: "בניית מרכז קניות עם 20 חנויות וחניון גדול. הפרויקט כולל מערכת מיזוג מרכזית ומעליות.",
-        image: "images/projects/mall-1.svg",
+        image: "Datas/assets/images/projects/mall-1.svg",
         features: ["20 חנויות", "חניון גדול", "מערכת מיזוג", "מעליות"],
         year: "2023",
         area: "2000 מ\"ר"
@@ -163,7 +163,7 @@ class ProjectsManager {
 
         card.innerHTML = `
             <div class="project-image">
-                <img src="${project.image}" alt="${project.title}" loading="lazy" onerror="this.src='images/placeholder-project.svg'">
+                <img src="${project.image}" alt="${project.title}" loading="lazy" onerror="this.src='Datas/assets/images/placeholder-project.svg'">
                 <div class="project-overlay">
                     <i class="fas fa-search-plus"></i>
                 </div>
@@ -210,7 +210,7 @@ class ProjectsManager {
                 <div class="modal-content">
                     <button class="modal-close">&times;</button>
                     <div class="modal-image">
-                        <img src="${project.image}" alt="${project.title}" onerror="this.src='images/placeholder-project.svg'">
+                        <img src="${project.image}" alt="${project.title}" onerror="this.src='Datas/assets/images/placeholder-project.svg'">
                     </div>
                     <div class="modal-info">
                         <h2>${project.title}</h2>

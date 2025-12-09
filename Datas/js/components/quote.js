@@ -130,11 +130,12 @@ class QuoteManager {
     }
 
     setupFormEnhancements() {
+        // פורמט מספר טלפון
         // Phone number formatting
         const phoneInput = this.form.querySelector('#customer-phone');
         if (phoneInput) {
             phoneInput.addEventListener('input', (e) => {
-                this.formatPhoneNumber(e.target);
+                Utils.formatPhoneNumber(e.target);
             });
         }
 
@@ -157,9 +158,14 @@ class QuoteManager {
         });
     }
 
+    /**
+     * חישוב הצעת המחיר
+     * Calculate the quote
+     * @param {boolean} showResult - האם להציג תוצאות
+     */
     calculateQuote(showResult = false) {
         if (!this.validateForm()) {
-            this.showFormError('אנא תקן את השגיאות בטופס');
+            Utils.showToast('אנא תקן את השגיאות בטופס', 'error');
             return;
         }
 
@@ -320,13 +326,14 @@ class QuoteManager {
         // Update quote items table
         this.displayQuoteTable(quote.quotes);
         
+        // עדכון סיכומים
         // Update totals
-        document.getElementById('subtotal').textContent = this.formatCurrency(quote.subtotal);
+        document.getElementById('subtotal').textContent = Utils.formatCurrency(quote.subtotal);
         document.getElementById('vat-percentage').textContent = (quote.vatRate * 100).toFixed(0);
-        document.getElementById('vat-amount').textContent = this.formatCurrency(quote.vatAmount);
-        document.getElementById('vat-amount-footer').textContent = this.formatCurrency(quote.vatAmount);
-        document.getElementById('total-price').textContent = this.formatCurrency(quote.totalWithVat);
-        document.getElementById('total-price-footer').textContent = this.formatCurrency(quote.totalWithVat);
+        document.getElementById('vat-amount').textContent = Utils.formatCurrency(quote.vatAmount);
+        document.getElementById('vat-amount-footer').textContent = Utils.formatCurrency(quote.vatAmount);
+        document.getElementById('total-price').textContent = Utils.formatCurrency(quote.totalWithVat);
+        document.getElementById('total-price-footer').textContent = Utils.formatCurrency(quote.totalWithVat);
         
         // Store quote data for sending
         this.currentQuote = quote;
@@ -345,13 +352,13 @@ class QuoteManager {
             row.innerHTML = `
                 <td class="row-number">${index + 1}</td>
                 <td class="work-description">${quote.workType} - ${quote.projectType}</td>
-                <td class="unit-price">${this.formatCurrency(quote.workPrice)}</td>
+                <td class="unit-price">${Utils.formatCurrency(quote.workPrice)}</td>
                 <td class="amount">${quote.workQuantity} ${quote.quantityUnit}</td>
                 <td class="work-percentage">${quote.workPercentage}%</td>
                 <td class="discount">${discountText}</td>
-                <td class="amount">${this.formatCurrency(quote.amount)}</td>
-                <td class="vat">${this.formatCurrency(quote.vat)}</td>
-                <td class="total">${this.formatCurrency(quote.total)}</td>
+                <td class="amount">${Utils.formatCurrency(quote.amount)}</td>
+                <td class="vat">${Utils.formatCurrency(quote.vat)}</td>
+                <td class="total">${Utils.formatCurrency(quote.total)}</td>
             `;
             
             tableBody.appendChild(row);
@@ -402,17 +409,19 @@ class QuoteManager {
             errorMessage = 'שדה זה נדרש';
         }
 
+        // אימות אימייל
         // Email validation
         if (fieldName === 'email' && value) {
-            if (!this.isValidEmail(value)) {
+            if (!Utils.validateEmail(value)) {
                 isValid = false;
                 errorMessage = 'כתובת אימייל לא תקינה';
             }
         }
 
+        // אימות טלפון
         // Phone validation
         if (fieldName === 'phone' && value) {
-            if (!this.isValidPhone(value)) {
+            if (!Utils.validatePhone(value)) {
                 isValid = false;
                 errorMessage = 'מספר טלפון לא תקין';
             }
@@ -467,12 +476,22 @@ class QuoteManager {
         }
     }
 
+    /**
+     * הצגת הודעת שגיאה
+     * Show error message
+     * @param {string} message - הודעת שגיאה
+     */
     showFormError(message) {
-        if (window.ContractorApp && window.ContractorApp.showToast) {
-            window.ContractorApp.showToast(message, 'error');
-        } else {
-            alert(message);
-        }
+        Utils.showToast(message, 'error');
+    }
+
+    /**
+     * הצגת הודעת הצלחה
+     * Show success message
+     * @param {string} message - הודעת הצלחה
+     */
+    showFormSuccess(message) {
+        Utils.showToast(message, 'success');
     }
 
     getFormData() {
@@ -501,49 +520,23 @@ class QuoteManager {
         return data;
     }
 
-    formatPhoneNumber(input) {
-        let value = input.value.replace(/\D/g, '');
-        
-        if (value.length > 0) {
-            if (value.length <= 3) {
-                value = value;
-            } else {
-                value = value.slice(0, 3) + '-' + value.slice(3);
-            }
-        }
-        
-        input.value = value;
-    }
-
+    /**
+     * שינוי גודל textarea אוטומטי לפי התוכן
+     * Auto-resize textarea based on content
+     * @param {HTMLTextAreaElement} textarea - textarea לשינוי גודל
+     */
     autoResizeTextarea(textarea) {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
     }
 
-    formatCurrency(amount) {
-        return new Intl.NumberFormat('he-IL', {
-            style: 'currency',
-            currency: 'ILS',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(amount);
-    }
-
-    isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    isValidPhone(phone) {
-        const phoneRegex = /^[\d\-\s\(\)]+$/;
-        const digitsOnly = phone.replace(/\D/g, '');
-        return phoneRegex.test(phone) && digitsOnly.length >= 10;
-    }
-
-    // Send quote via email (simulated)
+    /**
+     * שליחת הצעת מחיר באימייל (סימולציה)
+     * Send quote via email (simulated)
+     */
     async sendQuote() {
         if (!this.currentQuote) {
-            this.showFormError('אנא חשב הצעת מחיר תחילה');
+            Utils.showToast('אנא חשב הצעת מחיר תחילה', 'error');
             return;
         }
 
@@ -559,16 +552,14 @@ class QuoteManager {
             // Simulate sending quote
             await this.simulateQuoteSubmission();
             
+            // הצלחה
             // Success
-            if (window.ContractorApp && window.ContractorApp.showToast) {
-                window.ContractorApp.showToast('הצעת המחיר נשלחה בהצלחה! נחזור אליכם בהקדם.', 'success');
-            } else {
-                alert('הצעת המחיר נשלחה בהצלחה! נחזור אליכם בהקדם.');
-            }
+            Utils.showToast('הצעת המחיר נשלחה בהצלחה! נחזור אליכם בהקדם.', 'success');
             
         } catch (error) {
+            // שגיאה
             // Error
-            this.showFormError('שגיאה בשליחת הצעת המחיר. אנא נסה שוב.');
+            Utils.showToast('שגיאה בשליחת הצעת המחיר. אנא נסה שוב.', 'error');
             console.error('Quote submission error:', error);
         } finally {
             // Reset button state
@@ -707,10 +698,13 @@ class QuoteManager {
         this.additionalQuotes = this.additionalQuotes.filter(quote => quote.id !== quoteId);
     }
 
-    // Save quote
+    /**
+     * שמירת הצעת מחיר
+     * Save quote to localStorage
+     */
     saveQuote() {
         if (!this.currentQuote) {
-            this.showFormError('אין הצעת מחיר לשמירה');
+            Utils.showToast('אין הצעת מחיר לשמירה', 'error');
             return;
         }
 
@@ -742,11 +736,12 @@ class QuoteManager {
             });
             localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));
 
+            // הצגת הודעת הצלחה
             // Show success message
-            this.showFormSuccess('הצעת המחיר נשמרה בהצלחה!');
+            Utils.showToast('הצעת המחיר נשמרה בהצלחה!', 'success');
             
         } catch (error) {
-            this.showFormError('שגיאה בשמירת הצעת המחיר');
+            Utils.showToast('שגיאה בשמירת הצעת המחיר', 'error');
             console.error('Save quote error:', error);
         } finally {
             // Reset button state
@@ -778,8 +773,9 @@ class QuoteManager {
         // Clear current quote
         this.currentQuote = null;
         
+        // הצגת הודעת הצלחה
         // Show success message
-        this.showFormSuccess('הצעת מחיר חדשה נוצרה');
+        Utils.showToast('הצעת מחיר חדשה נוצרה', 'success');
         
         // Scroll to top of form
         this.form.scrollIntoView({ behavior: 'smooth' });
