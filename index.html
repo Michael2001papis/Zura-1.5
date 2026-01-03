@@ -50,6 +50,7 @@
     
     <link rel="stylesheet" href="Datas/styles/main.css">
     <link rel="stylesheet" href="Datas/styles/responsive.css">
+    <link rel="stylesheet" href="Datas/styles/quick-quote.css">
 </head>
 <body>
     <!-- Skip to main content link for accessibility -->
@@ -78,7 +79,13 @@
                     <a href="#contact" class="nav-link" data-page="contact" role="menuitem" aria-label="צור קשר">צור קשר</a>
                 </li>
                 <li class="nav-item" role="none">
+                    <a href="#quick-quote" class="nav-link" data-page="quick-quote" role="menuitem" aria-label="הצעת מחיר מהירה">הצעת מחיר מהירה</a>
+                </li>
+                <li class="nav-item" role="none">
                     <a href="#quote" class="nav-link" data-page="quote" role="menuitem" aria-label="הצעת מחיר">הצעת מחיר</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#leads" class="nav-link" data-page="leads" role="menuitem" aria-label="ניהול לידים">ניהול לידים</a>
                 </li>
                 <li class="nav-item" role="none">
                     <a href="#copyright" class="nav-link" data-page="copyright" role="menuitem" aria-label="זכויות יוצרים">זכויות יוצרים</a>
@@ -144,7 +151,8 @@
                     <h1 class="hero-title">קבלן מקצועי לפרויקטים איכותיים</h1>
                     <p class="hero-subtitle">מתמחה בבנייה, שיפוץ ועיצוב ברמה הגבוהה ביותר</p>
                     <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary" data-page="projects">צפה בפרויקטים</a>
+                        <a href="#quick-quote" class="btn btn-primary" data-page="quick-quote">הצעת מחיר מהירה</a>
+                        <a href="#projects" class="btn btn-secondary" data-page="projects">צפה בפרויקטים</a>
                         <a href="#contact" class="btn btn-secondary" data-page="contact">צור קשר</a>
                     </div>
                 </div>
@@ -370,6 +378,278 @@
                             <button type="submit" class="btn btn-primary">שלח הודעה</button>
                         </form>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Quote Page - טופס רב-שלבי חכם -->
+        <section id="quick-quote" class="page">
+            <div class="container">
+                <div class="quick-quote-wrapper">
+                    <div class="quick-quote-header">
+                        <h1 class="page-title">הצעת מחיר מהירה</h1>
+                        <p class="quick-quote-subtitle">מלאו 5 שאלות קצרות וקבלו הערכת מחיר תוך דקות</p>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="form-progress">
+                        <div class="progress-bar" id="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <span class="step active" data-step="1">1</span>
+                            <span class="step" data-step="2">2</span>
+                            <span class="step" data-step="3">3</span>
+                            <span class="step" data-step="4">4</span>
+                            <span class="step" data-step="5">5</span>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Step Form -->
+                    <form id="quick-quote-form" class="quick-quote-form">
+                        
+                        <!-- Step 1: סוג עבודה -->
+                        <div class="form-step active" data-step="1">
+                            <div class="step-header">
+                                <h2>איזה סוג עבודה אתם צריכים?</h2>
+                                <p>בחרו את סוג העבודה העיקרי</p>
+                            </div>
+                            <div class="option-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="renovation" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-hammer"></i>
+                                        <span>שיפוץ כללי</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="paint" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-paint-brush"></i>
+                                        <span>צבע</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="flooring" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-th"></i>
+                                        <span>ריצוף</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="plumbing" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-faucet"></i>
+                                        <span>אינסטלציה</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="gypsum" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-cube"></i>
+                                        <span>גבס</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="insulation" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>איטום</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="electrical" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-bolt"></i>
+                                        <span>חשמל</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="workType" value="other" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <span>אחר</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary btn-next" disabled>הבא</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: איפה ומתי -->
+                        <div class="form-step" data-step="2">
+                            <div class="step-header">
+                                <h2>איפה ומתי?</h2>
+                                <p>איפה הפרויקט ומתי אתם רוצים להתחיל?</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="location-city">עיר *</label>
+                                <input type="text" id="location-city" name="city" required placeholder="לדוגמה: תל אביב">
+                            </div>
+                            <div class="form-group">
+                                <label for="location-street">רחוב (לא חובה)</label>
+                                <input type="text" id="location-street" name="street" placeholder="לדוגמה: רחוב הרצל">
+                            </div>
+                            <div class="form-group">
+                                <label>מתי אתם רוצים להתחיל? *</label>
+                                <div class="option-grid-small">
+                                    <label class="option-card-small">
+                                        <input type="radio" name="timing" value="urgent" required>
+                                        <span>דחוף</span>
+                                    </label>
+                                    <label class="option-card-small">
+                                        <input type="radio" name="timing" value="this-week" required>
+                                        <span>השבוע</span>
+                                    </label>
+                                    <label class="option-card-small">
+                                        <input type="radio" name="timing" value="this-month" required>
+                                        <span>החודש</span>
+                                    </label>
+                                    <label class="option-card-small">
+                                        <input type="radio" name="timing" value="not-sure" required>
+                                        <span>עוד לא בטוח</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">חזור</button>
+                                <button type="button" class="btn btn-primary btn-next" disabled>הבא</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: גודל/היקף -->
+                        <div class="form-step" data-step="3">
+                            <div class="step-header">
+                                <h2>מה הגודל של הפרויקט?</h2>
+                                <p>בחרו את ההיקף המתאים</p>
+                            </div>
+                            <div class="option-grid-small">
+                                <label class="option-card-small">
+                                    <input type="radio" name="size" value="room" required>
+                                    <span>חדר אחד</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="size" value="bathroom" required>
+                                    <span>מקלחת</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="size" value="apartment-3" required>
+                                    <span>דירה 3 חדרים</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="size" value="apartment-4" required>
+                                    <span>דירה 4 חדרים</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="size" value="house" required>
+                                    <span>בית פרטי</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="size" value="custom" required>
+                                    <span>אחר - אציין מ"ר</span>
+                                </label>
+                            </div>
+                            <div class="form-group" id="custom-size-group" style="display: none;">
+                                <label for="custom-size">כמה מ"ר משוער? *</label>
+                                <input type="number" id="custom-size" name="customSize" min="1" placeholder="לדוגמה: 50">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">חזור</button>
+                                <button type="button" class="btn btn-primary btn-next" disabled>הבא</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: תקציב -->
+                        <div class="form-step" data-step="4">
+                            <div class="step-header">
+                                <h2>מה התקציב המשוער?</h2>
+                                <p>זה לא מחייב, אבל עוזר לנו להבין את ההיקף</p>
+                            </div>
+                            <div class="option-grid-small">
+                                <label class="option-card-small">
+                                    <input type="radio" name="budget" value="up-to-3k" required>
+                                    <span>עד 3,000 ₪</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="budget" value="3k-8k" required>
+                                    <span>3,000 - 8,000 ₪</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="budget" value="8k-20k" required>
+                                    <span>8,000 - 20,000 ₪</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="budget" value="20k-plus" required>
+                                    <span>20,000+ ₪</span>
+                                </label>
+                                <label class="option-card-small">
+                                    <input type="radio" name="budget" value="not-sure" required>
+                                    <span>לא יודע</span>
+                                </label>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">חזור</button>
+                                <button type="button" class="btn btn-primary btn-next" disabled>הבא</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: פרטים אישיים + תמונה -->
+                        <div class="form-step" data-step="5">
+                            <div class="step-header">
+                                <h2>פרטים אישיים</h2>
+                                <p>איך נוכל ליצור איתכם קשר?</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-name-quick">שם מלא *</label>
+                                <input type="text" id="customer-name-quick" name="customerName" required placeholder="הכנס שם מלא">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone-quick">מספר טלפון *</label>
+                                <input type="tel" id="customer-phone-quick" name="customerPhone" required placeholder="050-1234567">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-notes">הערות נוספות (לא חובה)</label>
+                                <textarea id="customer-notes" name="notes" rows="3" placeholder="כל מידע נוסף שיכול לעזור..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="photo-upload" class="upload-label">
+                                    <i class="fas fa-camera"></i>
+                                    <span>העלו תמונה/וידאו של הפרויקט (לא חובה)</span>
+                                    <small>זה עוזר לנו להבין בדיוק מה צריך</small>
+                                </label>
+                                <input type="file" id="photo-upload" name="photos" accept="image/*,video/*" multiple>
+                                <div class="upload-preview" id="upload-preview"></div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">חזור</button>
+                                <button type="submit" class="btn btn-primary btn-submit" disabled>
+                                    <i class="fas fa-paper-plane"></i>
+                                    שלח בקשה
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <!-- Success Screen -->
+                    <div class="success-screen" id="success-screen" style="display: none;">
+                        <div class="success-content">
+                            <div class="success-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h2>קיבלנו את הבקשה שלכם! 🎉</h2>
+                            <p>נחזור אליכם תוך <strong>2-4 שעות</strong> עם הערכת מחיר מקצועית</p>
+                            <div class="success-actions">
+                                <a href="https://wa.me/972501234567?text=" id="whatsapp-link" class="btn btn-primary" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    שלח הודעה בוואטסאפ
+                                </a>
+                                <button type="button" class="btn btn-secondary" id="new-request-btn">בקשה חדשה</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -713,6 +993,7 @@
                         <li><a href="#about" data-page="about">אודות</a></li>
                         <li><a href="#services" data-page="services">שירותים</a></li>
                         <li><a href="#projects" data-page="projects">פרויקטים</a></li>
+                        <li><a href="#quick-quote" data-page="quick-quote">הצעת מחיר מהירה</a></li>
                         <li><a href="#quote" data-page="quote">הצעת מחיר</a></li>
                         <li><a href="#copyright" data-page="copyright">זכויות יוצרים</a></li>
                     </ul>
@@ -861,6 +1142,9 @@
     <script src="Datas/js/components/projects.js"></script>
     <script src="Datas/js/components/contact.js"></script>
     <script src="Datas/js/components/quote.js"></script>
+    <script src="Datas/js/components/leads-manager.js"></script>
+    <script src="Datas/js/components/quick-quote.js"></script>
+    <script src="Datas/js/components/leads-display.js"></script>
     <script src="Datas/js/components/search.js"></script>
 </body>
 </html>

@@ -1602,3 +1602,147 @@ p {
 
 .hidden { display: none; }
 .visible { display: block; }
+
+/* Leads Management Page */
+.leads-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.leads-loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-light);
+}
+
+.no-leads {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+}
+
+.no-leads i {
+    font-size: 4rem;
+    color: var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.no-leads p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.no-leads-subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.leads-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.lead-item {
+    background: var(--background-light);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.lead-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.lead-number {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.lead-status {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.lead-content {
+    margin-bottom: 1rem;
+}
+
+.lead-info-row {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.lead-info-row strong {
+    color: var(--primary-color);
+    margin-left: 0.5rem;
+}
+
+.lead-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.lead-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background: #20BA5A;
+}
+
+.leads-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+    .lead-actions {
+        flex-direction: column;
+    }
+    
+    .lead-actions .btn {
+        width: 100%;
+    }
+    
+    .leads-actions {
+        flex-direction: column;
+    }
+    
+    .leads-actions .btn {
+        width: 100%;
+    }
+}
